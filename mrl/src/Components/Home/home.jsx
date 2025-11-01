@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
@@ -169,9 +170,9 @@ const Home = () => {
       {/* Header */}
       <header className={isScrolled ? 'scrolled' : ''}>
         <div className="container header-container">
-          <a href="#" className="logo">
+          <Link to="/" className="logo">
             <i className="fas fa-elevator"></i>MRL<span>Engineering</span>
-          </a>
+          </Link>
           <div 
             className="mobile-menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -180,9 +181,9 @@ const Home = () => {
           </div>
           <nav>
             <ul className={isMobileMenuOpen ? 'active' : ''}>
-              <li><a href="#">Home</a></li>
-              <li><a href="product.html">Product</a></li>
-              <li><a href="afterSales.html">Service</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/product">Product</Link></li>
+              <li><Link to="/service">Service</Link></li>
               <li className="dropdown">
                 <a href="#" onClick={(e) => {
                   e.preventDefault();
@@ -191,49 +192,49 @@ const Home = () => {
                   Inquiry <i className="fas fa-chevron-down"></i>
                 </a>
                 <div className={`dropdown-content ${isDropdownOpen ? 'active' : ''}`}>
-                  <a href="Inquiry.html#product" className="dropdown-item">
+                  <Link to="/inquiry#product" className="dropdown-item">
                     <i className="fas fa-box"></i>
                     <span>Product Inquiry</span>
-                  </a>
-                  <a href="Inquiry.html#quotation" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#quotation" className="dropdown-item">
                     <i className="fas fa-calculator"></i>
                     <span>Price Quote</span>
-                  </a>
-                  <a href="Inquiry.html#maintenance" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#maintenance" className="dropdown-item">
                     <i className="fas fa-tools"></i>
                     <span>Maintenance Service</span>
-                  </a>
-                  <a href="Inquiry.html#installation" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#installation" className="dropdown-item">
                     <i className="fas fa-cogs"></i>
                     <span>Installation Service</span>
-                  </a>
-                  <a href="Inquiry.html#support" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#support" className="dropdown-item">
                     <i className="fas fa-headset"></i>
                     <span>Technical Support</span>
-                  </a>
-                  <a href="Inquiry.html#parts" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#parts" className="dropdown-item">
                     <i className="fas fa-wrench"></i>
                     <span>Spare Parts Inquiry</span>
-                  </a>
-                  <a href="Inquiry.html#warranty" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#warranty" className="dropdown-item">
                     <i className="fas fa-shield-alt"></i>
                     <span>Warranty Service</span>
-                  </a>
-                  <a href="Inquiry.html#partnership" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#partnership" className="dropdown-item">
                     <i className="fas fa-handshake"></i>
                     <span>Partnership Inquiry</span>
-                  </a>
-                  <a href="Inquiry.html#booking" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#booking" className="dropdown-item">
                     <i className="fas fa-calendar-check"></i>
                     <span>Service Booking</span>
-                  </a>
-                  <a href="Inquiry.html#general" className="dropdown-item">
+                  </Link>
+                  <Link to="/inquiry#general" className="dropdown-item">
                     <i className="fas fa-envelope"></i>
                     <span>General Inquiry</span>
-                  </a>
+                  </Link>
                 </div>
               </li>
-              <li><a href="Contact.html" className="contact-btn">Contact</a></li>
+              <li><Link to="/contact" className="contact-btn">Contact</Link></li>
             </ul>
           </nav>
         </div>
@@ -762,19 +763,19 @@ const Home = () => {
             </div>
             <div className="footer-col">
               <h3>Quick Links</h3>
-              <a href="#">Home</a>
-              <a href="#">About Us</a>
-              <a href="#">Services</a>
-              <a href="#">Projects</a>
-              <a href="#">Contact</a>
+              <Link to="/">Home</Link>
+              <a href="#about">About Us</a>
+              <Link to="/service">Services</Link>
+              <Link to="/product">Projects</Link>
+              <Link to="/contact">Contact</Link>
             </div>
             <div className="footer-col">
               <h3>Our Services</h3>
-              <a href="#">Elevator Installation</a>
-              <a href="#">Elevator Maintenance</a>
-              <a href="#">Modernization & Upgrades</a>
-              <a href="#">Consulting & Support</a>
-              <a href="#">Emergency Services</a>
+              <Link to="/service">Elevator Installation</Link>
+              <Link to="/service">Elevator Maintenance</Link>
+              <Link to="/service">Modernization & Upgrades</Link>
+              <Link to="/service">Consulting & Support</Link>
+              <Link to="/service">Emergency Services</Link>
             </div>
           </div>
           <div className="copyright">
@@ -787,4 +788,3 @@ const Home = () => {
 };
 
 export default Home;
-
