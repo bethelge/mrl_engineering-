@@ -182,7 +182,7 @@ const Home = () => {
           <nav>
             <ul className={isMobileMenuOpen ? 'active' : ''}>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/product">Product</Link></li>
+              <li><Link to="/products">Product</Link></li>
               <li><Link to="/service">Service</Link></li>
               <li className="dropdown">
                 <a href="#" onClick={(e) => {
@@ -247,8 +247,8 @@ const Home = () => {
             <h1>Innovating Vertical Mobility</h1>
             <p>Reliable Elevator Engineering Solutions for Modern Buildings.</p>
             <div className="hero-btns">
-              <a href="#" className="btn btn-primary">Discover More</a>
-              <a href="#" className="btn btn-outline">Our Projects</a>
+              <a href="#about" className="btn btn-primary">Discover More</a>
+              <Link to="/products" className="btn btn-outline">Our Projects</Link>
             </div>
           </div>
         </div>
@@ -546,7 +546,7 @@ const Home = () => {
                 </div>
               </div>
 
-              <a href="#" className="btn btn-primary">Become a Partner</a>
+              <Link to="/inquiry#partnership" className="btn btn-primary">Become a Partner</Link>
             </div>
 
             <div className="partners-visual">
@@ -732,7 +732,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <a href="#" className="btn btn-primary">View All Projects</a>
+          <Link to="/products" className="btn btn-primary">View All Projects</Link>
         </div>
       </section>
 
@@ -766,7 +766,7 @@ const Home = () => {
               <Link to="/">Home</Link>
               <a href="#about">About Us</a>
               <Link to="/service">Services</Link>
-              <Link to="/product">Projects</Link>
+              <Link to="/products">Projects</Link>
               <Link to="/contact">Contact</Link>
             </div>
             <div className="footer-col">

@@ -1,0 +1,36 @@
+/* ProductPage.module.css */
+.productPage {
+  position: relative;
+  background: var(--white);
+  min-height: 100vh;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Remove the flex: 1 from main since we don't need flex layout anymore */
+/* Remove white space between category buttons and products */
+.mainSection {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* small clean gap like your first screenshot */
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  background: var(--white);
+  color: var(--text-dark);
+  padding: 2rem;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 12;
+  border-top: 2px solid var(--primary);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.footer.show {
+  opacity: 1;
+}

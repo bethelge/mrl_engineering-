@@ -100,7 +100,7 @@ const Inquiry = () => {
             <nav>
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/product">Product</Link></li>
+                <li><Link to="/products">Product</Link></li>
                 <li><Link to="/service">Service</Link></li>
                 <li className="dropdown">
                   <a href="#" onClick={(e) => {
