@@ -16,13 +16,28 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: var(--secondary);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
   transition: var(--transition);
   padding: 20px 0;
 }
 
+/* Home page - transparent state (white text) */
+.header.homeTransparent {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+/* Other pages - transparent state (dark text for light backgrounds) */
+.header.otherPagesTransparent {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+/* Scrolled state (white background, dark text) - applies to all pages */
 .header.scrolled {
+  background-color: var(--secondary);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: var(--shadow);
   padding: 15px 0;
 }
@@ -43,7 +58,7 @@
 .logo {
   font-size: 24px;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--dark-text);
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -53,12 +68,33 @@
 
 .logo i {
   font-size: 22px;
-  color: var(--primary);
+  color: var(--dark-text);
 }
 
 .logo span {
-  color: var(--primary);
+  color: var(--dark-text);
   margin-left: 0;
+}
+
+/* Home page transparent - white text */
+.header.homeTransparent .logo,
+.header.homeTransparent .logo i,
+.header.homeTransparent .logo span {
+  color: var(--secondary);
+}
+
+/* Other pages transparent - blue/dark text */
+.header.otherPagesTransparent .logo,
+.header.otherPagesTransparent .logo i,
+.header.otherPagesTransparent .logo span {
+  color: var(--primary);
+}
+
+/* Scrolled state - blue text for all pages */
+.header.scrolled .logo,
+.header.scrolled .logo i,
+.header.scrolled .logo span {
+  color: var(--primary);
 }
 
 .logo:hover {
@@ -88,6 +124,21 @@ nav ul li a {
   position: relative;
 }
 
+/* Home page transparent - white text */
+.header.homeTransparent nav ul li a {
+  color: var(--secondary);
+}
+
+/* Other pages transparent - dark text */
+.header.otherPagesTransparent nav ul li a {
+  color: var(--dark-text);
+}
+
+/* Scrolled state - dark text for all pages */
+.header.scrolled nav ul li a {
+  color: var(--dark-text);
+}
+
 nav ul li a::after {
   content: '';
   position: absolute;
@@ -99,20 +150,102 @@ nav ul li a::after {
   transition: var(--transition);
 }
 
+/* Home page transparent - white underline */
+.header.homeTransparent nav ul li a::after {
+  background-color: var(--secondary);
+}
+
+/* Other pages transparent - blue underline */
+.header.otherPagesTransparent nav ul li a::after {
+  background-color: var(--primary);
+}
+
+/* Scrolled state - blue underline for all pages */
+.header.scrolled nav ul li a::after {
+  background-color: var(--primary);
+}
+
 nav ul li a:hover {
   color: var(--primary);
+  opacity: 1;
+}
+
+/* Home page transparent - white on hover */
+.header.homeTransparent nav ul li a:hover {
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+/* Other pages transparent - blue on hover */
+.header.otherPagesTransparent nav ul li a:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+/* Scrolled state - blue on hover for all pages */
+.header.scrolled nav ul li a:hover {
+  color: var(--primary);
+  opacity: 1;
 }
 
 nav ul li a:hover::after {
   width: 100%;
+  background-color: var(--primary);
 }
 
+/* Home page transparent - white underline on hover */
+.header.homeTransparent nav ul li a:hover::after {
+  background-color: var(--secondary);
+}
+
+/* Other pages transparent - blue underline on hover */
+.header.otherPagesTransparent nav ul li a:hover::after {
+  background-color: var(--primary);
+}
+
+/* Scrolled state - blue underline on hover for all pages */
+.header.scrolled nav ul li a:hover::after {
+  background-color: var(--primary);
+}
+
+/* Active state - blue on all pages except home transparent */
 nav ul li a.active {
+  color: var(--primary);
+}
+
+/* Home page transparent - white for active */
+.header.homeTransparent nav ul li a.active {
+  color: var(--secondary);
+}
+
+/* Other pages transparent - blue for active */
+.header.otherPagesTransparent nav ul li a.active {
+  color: var(--primary);
+}
+
+/* Scrolled state - blue for active on all pages */
+.header.scrolled nav ul li a.active {
   color: var(--primary);
 }
 
 nav ul li a.active::after {
   width: 100%;
+  background-color: var(--primary);
+}
+
+/* Home page transparent - white underline for active */
+.header.homeTransparent nav ul li a.active::after {
+  background-color: var(--secondary);
+}
+
+/* Other pages transparent - blue underline for active */
+.header.otherPagesTransparent nav ul li a.active::after {
+  background-color: var(--primary);
+}
+
+/* Scrolled state - blue underline for active on all pages */
+.header.scrolled nav ul li a.active::after {
+  background-color: var(--primary);
 }
 
 .contactBtn {
@@ -129,6 +262,10 @@ nav ul li a.active::after {
 .contactBtn:hover {
   opacity: 0.9;
   transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.header.scrolled .contactBtn:hover {
   box-shadow: 0 5px 20px rgba(4, 0, 255, 0.15);
 }
 
@@ -139,6 +276,52 @@ nav ul li a.active::after {
 /* Dropdown Styles */
 .dropdown {
   position: relative;
+}
+
+.dropdownTrigger {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: var(--transition);
+  padding: 8px 0;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Home page transparent - white text for dropdown trigger */
+.header.homeTransparent .dropdownTrigger {
+  color: var(--secondary);
+}
+
+/* Other pages transparent - dark text for dropdown trigger */
+.header.otherPagesTransparent .dropdownTrigger {
+  color: var(--dark-text);
+}
+
+/* Scrolled state - dark text for dropdown trigger on all pages */
+.header.scrolled .dropdownTrigger {
+  color: var(--dark-text);
+}
+
+.dropdownTrigger:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+.header.homeTransparent .dropdownTrigger:hover {
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+.header.otherPagesTransparent .dropdownTrigger:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+.header.scrolled .dropdownTrigger:hover {
+  color: var(--primary);
+  opacity: 1;
 }
 
 .dropdownContent {
@@ -225,6 +408,31 @@ nav ul li a.active::after {
   nav ul li a {
     font-size: 1.1rem;
     padding: 10px 0;
+    color: var(--dark-text);
+  }
+
+  /* Home page transparent - white text in mobile */
+  .header.homeTransparent nav ul li a {
+    color: var(--secondary);
+  }
+
+  /* Other pages transparent - dark text in mobile */
+  .header.otherPagesTransparent nav ul li a {
+    color: var(--dark-text);
+  }
+
+  /* Scrolled state - dark text in mobile for all pages */
+  .header.scrolled nav ul li a {
+    color: var(--dark-text);
+  }
+
+  .header.homeTransparent nav ul li a.active {
+    color: var(--secondary);
+  }
+
+  .header.otherPagesTransparent nav ul li a.active,
+  .header.scrolled nav ul li a.active {
+    color: var(--primary);
   }
 
   .dropdownContent {

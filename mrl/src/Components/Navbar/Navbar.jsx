@@ -16,11 +16,22 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Determine active route
+  // Determine active route and if we're on home page
   const activeRoute = location.pathname;
+  const isHomePage = activeRoute === '/';
+
+  // Determine navbar style class based on page and scroll state
+  // All pages: transparent at top, white background when scrolled
+  const getNavbarClass = () => {
+    if (isScrolled) {
+      return styles.scrolled; // All pages get white background when scrolled
+    }
+    // At the top: home page uses white text, other pages use dark text
+    return isHomePage ? styles.homeTransparent : styles.otherPagesTransparent;
+  };
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${getNavbarClass()}`}>
       <div className={styles.container}>
         <div className={styles.headerContent}>
           <Link to="/" className={styles.logo}>
@@ -54,7 +65,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className={styles.dropdown}>
-                <a href="#" onClick={(e) => e.preventDefault()}>
+                <a 
+                  href="#" 
+                  onClick={(e) => e.preventDefault()}
+                  className={styles.dropdownTrigger}
+                >
                   Inquiry <i className="fas fa-chevron-down"></i>
                 </a>
                 <div className={styles.dropdownContent}>
