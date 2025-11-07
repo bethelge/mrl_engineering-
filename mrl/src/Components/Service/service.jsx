@@ -1,37 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import './service.css';
 
 const Service = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      const dropdown = document.querySelector('.dropdown');
-      if (dropdown && !dropdown.contains(event.target) && isDropdownOpen) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    if (isDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isDropdownOpen]);
 
   // Scroll animations for service cards and process steps
   useEffect(() => {
@@ -90,72 +62,7 @@ const Service = () => {
 
   return (
     <>
-      {/* Header */}
-      <header style={{ boxShadow: isScrolled ? '0 2px 10px rgba(4, 0, 255, 0.1)' : 'none' }}>
-        <div className="container">
-          <div className="header-content">
-            <Link to="/" className="logo">MRL Engineering</Link>
-            <nav>
-              <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/products">Product</Link></li>
-                <li><Link to="/service">Service</Link></li>
-                <li className="dropdown">
-                  <a href="#" onClick={(e) => {
-                    e.preventDefault();
-                    setIsDropdownOpen(!isDropdownOpen);
-                  }}>
-                    Inquiry <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <div className={`dropdown-content ${isDropdownOpen ? 'active' : ''}`}>
-                    <Link to="/inquiry#product" className="dropdown-item">
-                      <i className="fas fa-box"></i>
-                      <span>Product Inquiry</span>
-                    </Link>
-                    <Link to="/inquiry#quotation" className="dropdown-item">
-                      <i className="fas fa-calculator"></i>
-                      <span>Price Quote</span>
-                    </Link>
-                    <Link to="/inquiry#maintenance" className="dropdown-item">
-                      <i className="fas fa-tools"></i>
-                      <span>Maintenance Service</span>
-                    </Link>
-                    <Link to="/inquiry#installation" className="dropdown-item">
-                      <i className="fas fa-cogs"></i>
-                      <span>Installation Service</span>
-                    </Link>
-                    <Link to="/inquiry#support" className="dropdown-item">
-                      <i className="fas fa-headset"></i>
-                      <span>Technical Support</span>
-                    </Link>
-                    <Link to="/inquiry#parts" className="dropdown-item">
-                      <i className="fas fa-wrench"></i>
-                      <span>Spare Parts Inquiry</span>
-                    </Link>
-                    <Link to="/inquiry#warranty" className="dropdown-item">
-                      <i className="fas fa-shield-alt"></i>
-                      <span>Warranty Service</span>
-                    </Link>
-                    <Link to="/inquiry#partnership" className="dropdown-item">
-                      <i className="fas fa-handshake"></i>
-                      <span>Partnership Inquiry</span>
-                    </Link>
-                    <Link to="/inquiry#booking" className="dropdown-item">
-                      <i className="fas fa-calendar-check"></i>
-                      <span>Service Booking</span>
-                    </Link>
-                    <Link to="/inquiry#general" className="dropdown-item">
-                      <i className="fas fa-envelope"></i>
-                      <span>General Inquiry</span>
-                    </Link>
-                  </div>
-                </li>
-                <li><Link to="/contact" className="contact-btn">Contact</Link></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Main Content */}
       <main>

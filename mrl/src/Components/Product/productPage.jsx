@@ -6,7 +6,6 @@ import styles from "./productPage.module.css";
 
 const ProductPage = () => {
   const [isDoorsOpen, setIsDoorsOpen] = useState(false);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
   const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
   const [isProductsVisible, setIsProductsVisible] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
@@ -20,7 +19,6 @@ const ProductPage = () => {
 
         // Step 2: After doors open, show everything
         setTimeout(() => {
-          setIsHeaderVisible(true);
           setIsCategoriesVisible(true);
           setIsProductsVisible(true);
           setIsFooterVisible(true);
@@ -44,7 +42,6 @@ const ProductPage = () => {
     <div className={styles.productPage}>
       <ProductSection
         isDoorsOpen={isDoorsOpen}
-        isHeaderVisible={isHeaderVisible}
         isCategoriesVisible={isCategoriesVisible}
         activeCategory={activeCategory}
         onCategoryChange={handleCategoryChange}

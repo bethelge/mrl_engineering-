@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Contact.module.css";
+import Navbar from "../Navbar/Navbar";
+import styles from "./contact.module.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,17 +13,6 @@ const Contact = () => {
     inquiryType: "",
     message: "",
   });
-
-  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsHeaderScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,106 +44,9 @@ const Contact = () => {
     );
   };
 
-  const dropdownItems = [
-    { icon: "fas fa-box", text: "Product Inquiry", href: "/inquiry#product" },
-    {
-      icon: "fas fa-calculator",
-      text: "Price Quote",
-      href: "/inquiry#quotation",
-    },
-    {
-      icon: "fas fa-tools",
-      text: "Maintenance Service",
-      href: "/inquiry#maintenance",
-    },
-    {
-      icon: "fas fa-cogs",
-      text: "Installation Service",
-      href: "/inquiry#installation",
-    },
-    {
-      icon: "fas fa-headset",
-      text: "Technical Support",
-      href: "/inquiry#support",
-    },
-    {
-      icon: "fas fa-wrench",
-      text: "Spare Parts Inquiry",
-      href: "/inquiry#parts",
-    },
-    {
-      icon: "fas fa-shield-alt",
-      text: "Warranty Service",
-      href: "/inquiry#warranty",
-    },
-    {
-      icon: "fas fa-handshake",
-      text: "Partnership Inquiry",
-      href: "/inquiry#partnership",
-    },
-    {
-      icon: "fas fa-calendar-check",
-      text: "Service Booking",
-      href: "/inquiry#booking",
-    },
-    {
-      icon: "fas fa-envelope",
-      text: "General Inquiry",
-      href: "/inquiry#general",
-    },
-  ];
-
   return (
     <div className={styles.body}>
-      {/* Header - Exact copy from original HTML */}
-      <header
-        className={`${styles.header} ${
-          isHeaderScrolled ? styles.scrolled : ""
-        }`}
-      >
-        <div className={styles.container}>
-          <div className={styles.headerContent}>
-            <Link to="/" className={styles.logo}>
-              MRL Engineering
-            </Link>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/products">Product</Link>
-                </li>
-                <li>
-                  <Link to="/service">Service</Link>
-                </li>
-                <li className={styles.dropdown}>
-                  <Link to="#">
-                    Inquiry <i className="fas fa-chevron-down"></i>
-                  </Link>
-                  <div className={styles.dropdownContent}>
-                    {dropdownItems.map((item, index) => (
-                      <Link
-                        key={index}
-                        to={item.href}
-                        className={styles.dropdownItem}
-                      >
-                        <i className={item.icon}></i>
-                        <span>{item.text}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </li>
-                <li>
-                  <Link to="/contact" className={styles.contactBtn}>
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Main Content */}
       <main className={styles.main}>

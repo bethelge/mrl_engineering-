@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import './Home.css';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [visibleElements, setVisibleElements] = useState({});
   const [statValues, setStatValues] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
   const [statPercentages, setStatPercentages] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
@@ -26,15 +24,6 @@ const Home = () => {
     { value: 98, suffix: '%', percentage: 98 },
     { value: 25, suffix: '', percentage: 100 }
   ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // About section scroll animations
   useEffect(() => {
@@ -167,78 +156,7 @@ const Home = () => {
 
   return (
     <>
-      {/* Header */}
-      <header className={isScrolled ? 'scrolled' : ''}>
-        <div className="container header-container">
-          <Link to="/" className="logo">
-            <i className="fas fa-elevator"></i>MRL<span>Engineering</span>
-          </Link>
-          <div 
-            className="mobile-menu"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <i className="fas fa-bars"></i>
-          </div>
-          <nav>
-            <ul className={isMobileMenuOpen ? 'active' : ''}>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/products">Product</Link></li>
-              <li><Link to="/service">Service</Link></li>
-              <li className="dropdown">
-                <a href="#" onClick={(e) => {
-                  e.preventDefault();
-                  setIsDropdownOpen(!isDropdownOpen);
-                }}>
-                  Inquiry <i className="fas fa-chevron-down"></i>
-                </a>
-                <div className={`dropdown-content ${isDropdownOpen ? 'active' : ''}`}>
-                  <Link to="/inquiry#product" className="dropdown-item">
-                    <i className="fas fa-box"></i>
-                    <span>Product Inquiry</span>
-                  </Link>
-                  <Link to="/inquiry#quotation" className="dropdown-item">
-                    <i className="fas fa-calculator"></i>
-                    <span>Price Quote</span>
-                  </Link>
-                  <Link to="/inquiry#maintenance" className="dropdown-item">
-                    <i className="fas fa-tools"></i>
-                    <span>Maintenance Service</span>
-                  </Link>
-                  <Link to="/inquiry#installation" className="dropdown-item">
-                    <i className="fas fa-cogs"></i>
-                    <span>Installation Service</span>
-                  </Link>
-                  <Link to="/inquiry#support" className="dropdown-item">
-                    <i className="fas fa-headset"></i>
-                    <span>Technical Support</span>
-                  </Link>
-                  <Link to="/inquiry#parts" className="dropdown-item">
-                    <i className="fas fa-wrench"></i>
-                    <span>Spare Parts Inquiry</span>
-                  </Link>
-                  <Link to="/inquiry#warranty" className="dropdown-item">
-                    <i className="fas fa-shield-alt"></i>
-                    <span>Warranty Service</span>
-                  </Link>
-                  <Link to="/inquiry#partnership" className="dropdown-item">
-                    <i className="fas fa-handshake"></i>
-                    <span>Partnership Inquiry</span>
-                  </Link>
-                  <Link to="/inquiry#booking" className="dropdown-item">
-                    <i className="fas fa-calendar-check"></i>
-                    <span>Service Booking</span>
-                  </Link>
-                  <Link to="/inquiry#general" className="dropdown-item">
-                    <i className="fas fa-envelope"></i>
-                    <span>General Inquiry</span>
-                  </Link>
-                </div>
-              </li>
-              <li><Link to="/contact" className="contact-btn">Contact</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="hero">
