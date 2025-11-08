@@ -160,6 +160,7 @@ nav ul li a:hover::after {
   position: relative;
   overflow: hidden;
   margin-bottom: 60px !important; /* This creates the gap */
+  
 }
 
 .heroSection::before {
@@ -183,7 +184,8 @@ nav ul li a:hover::after {
   font-size: 48px;
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 60px;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
