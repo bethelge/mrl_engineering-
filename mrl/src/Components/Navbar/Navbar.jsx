@@ -1,100 +1,116 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { dropdownItems } from '../Product/productData';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Determine active route and if we're on home page
-  const activeRoute = location.pathname;
-  const isHomePage = activeRoute === '/';
-
-  // Determine navbar style class based on page and scroll state
-  // All pages: transparent at top, white background when scrolled
-  const getNavbarClass = () => {
-    if (isScrolled) {
-      return styles.scrolled; // All pages get white background when scrolled
-    }
-    // At the top: home page uses white text, other pages use dark text
-    return isHomePage ? styles.homeTransparent : styles.otherPagesTransparent;
-  };
+  const headerClass = scrolled 
+    ? styles.scrolled 
+    : isHomePage 
+      ? styles.homeTransparent 
+      : styles.otherPagesTransparent;
 
   return (
-    <header className={`${styles.header} ${getNavbarClass()}`}>
+    <header className={`${styles.header} ${headerClass}`}>
       <div className={styles.container}>
         <div className={styles.headerContent}>
           <Link to="/" className={styles.logo}>
-            <i className="fas fa-elevator"></i>
-            MRL<span>Engineering</span>
+            <i className="fas fa-building"></i>
+            <span>MRL Engineering</span>
           </Link>
+          
           <nav>
-            <ul>
+            <ul className={mobileMenuOpen ? 'active' : ''}>
               <li>
-                <Link 
-                  to="/" 
-                  className={activeRoute === '/' ? styles.active : ''}
-                >
+                <Link to="/" className={location.pathname === '/' ? styles.active : ''}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/products" 
-                  className={activeRoute === '/products' ? styles.active : ''}
-                >
-                  Product
+                <Link to="/products" className={location.pathname === '/products' ? styles.active : ''}>
+                  Products
                 </Link>
               </li>
               <li>
-                <Link 
-                  to="/service" 
-                  className={activeRoute === '/service' ? styles.active : ''}
-                >
-                  Service
+                <Link to="/service" className={location.pathname === '/service' ? styles.active : ''}>
+                  Services
                 </Link>
               </li>
               <li className={styles.dropdown}>
-                <a 
-                  href="#" 
-                  onClick={(e) => e.preventDefault()}
-                  className={styles.dropdownTrigger}
-                >
+                <span className={styles.dropdownTrigger}>
                   Inquiry <i className="fas fa-chevron-down"></i>
-                </a>
+                </span>
                 <div className={styles.dropdownContent}>
-                  {dropdownItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      to={item.href}
-                      className={styles.dropdownItem}
-                    >
-                      <i className={item.icon}></i>
-                      <span>{item.text}</span>
-                    </Link>
-                  ))}
+                  <Link to="/inquiry#product" className={styles.dropdownItem}>
+                    <i className="fas fa-box"></i>
+                    <span>Product Inquiry</span>
+                  </Link>
+                  <Link to="/inquiry#quotation" className={styles.dropdownItem}>
+                    <i className="fas fa-calculator"></i>
+                    <span>Price Quote</span>
+                  </Link>
+                  <Link to="/inquiry#maintenance" className={styles.dropdownItem}>
+                    <i className="fas fa-tools"></i>
+                    <span>Maintenance Service</span>
+                  </Link>
+                  <Link to="/inquiry#installation" className={styles.dropdownItem}>
+                    <i className="fas fa-cogs"></i>
+                    <span>Installation Service</span>
+                  </Link>
+                  <Link to="/inquiry#support" className={styles.dropdownItem}>
+                    <i className="fas fa-headset"></i>
+                    <span>Technical Support</span>
+                  </Link>
+                  <Link to="/inquiry#parts" className={styles.dropdownItem}>
+                    <i className="fas fa-wrench"></i>
+                    <span>Spare Parts Inquiry</span>
+                  </Link>
+                  <Link to="/inquiry#warranty" className={styles.dropdownItem}>
+                    <i className="fas fa-shield-alt"></i>
+                    <span>Warranty Service</span>
+                  </Link>
+                  <Link to="/inquiry#partnership" className={styles.dropdownItem}>
+                    <i className="fas fa-handshake"></i>
+                    <span>Partnership Inquiry</span>
+                  </Link>
+                  <Link to="/inquiry#booking" className={styles.dropdownItem}>
+                    <i className="fas fa-calendar-check"></i>
+                    <span>Service Booking</span>
+                  </Link>
+                  <Link to="/inquiry#general" className={styles.dropdownItem}>
+                    <i className="fas fa-envelope"></i>
+                    <span>General Inquiry</span>
+                  </Link>
                 </div>
               </li>
               <li>
-                <Link 
-                  to="/contact" 
-                  className={`${styles.contactBtn} ${activeRoute === '/contact' ? styles.active : ''}`}
-                >
+                <Link to="/contact" className={`${styles.contactBtn} ${location.pathname === '/contact' ? styles.active : ''}`}>
                   Contact
                 </Link>
               </li>
             </ul>
           </nav>
+
+          <div 
+            className={styles.mobileMenu}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <i className={mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+          </div>
         </div>
       </div>
     </header>
@@ -102,3 +118,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
