@@ -241,7 +241,7 @@ nav ul li a.active {
 }
 
 .breadcrumb {
-  margin-bottom: 30px;
+  margin-bottom: 100px;
   font-size: 14px;
   color: var(--text-light);
 }
@@ -319,27 +319,23 @@ nav ul li a.active {
   transform: scale(1.05);
 }
 
-/* Product Info */
+/* Product Info - CLEAN & PROFESSIONAL */
 .productInfo {
   padding: 20px 0;
 }
 
 .productTitle {
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--primary-blue);
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--primary-blue), #0000cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 15px;
   line-height: 1.2;
 }
 
 .productSubtitle {
   font-size: 1.2rem;
   color: var(--text-light);
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -347,12 +343,11 @@ nav ul li a.active {
 .productDescription {
   font-size: 1.1rem;
   color: var(--text-dark);
-  margin-bottom: 30px;
-  line-height: 1.8;
-  text-align: left;
-  font-weight: 400;
+  margin-bottom: 40px;
+  line-height: 1.7;
 }
 
+/* Key Features - SYMMETRICAL & CLEAN */
 .productFeatures {
   margin-bottom: 40px;
 }
@@ -360,7 +355,7 @@ nav ul li a.active {
 .featuresTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--primary-blue);
   margin-bottom: 20px;
   line-height: 1.3;
 }
@@ -369,68 +364,130 @@ nav ul li a.active {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  gap: 12px;
 }
 
 .featuresList li {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 15px;
-  padding: 12px 0;
+  padding: 16px 20px;
   font-size: 1rem;
   color: var(--text-dark);
   line-height: 1.6;
+  background: var(--white);
+  border-radius: 10px;
+  border: 1px solid rgba(4, 0, 255, 0.1);
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(4, 0, 255, 0.05);
+}
+
+.featuresList li:hover {
+  border-color: rgba(4, 0, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(4, 0, 255, 0.1);
 }
 
 .featuresList i {
   color: var(--primary-blue);
-  margin-right: 15px;
-  font-size: 1.2rem;
+  margin-right: 12px;
+  font-size: 1.1rem;
   width: 20px;
   flex-shrink: 0;
   margin-top: 2px;
 }
 
+/* Technical Specifications - PERFECT 2-COLUMN WITH SAME STARTING POINT */
 .productSpecs {
-  background: linear-gradient(135deg, rgba(4, 0, 255, 0.05), rgba(255, 255, 255, 0.1));
-  padding: 30px;
-  border-radius: 20px;
+  background: var(--white);
+  padding: 28px;
+  border-radius: 16px;
   border: 1px solid rgba(4, 0, 255, 0.1);
   margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(4, 0, 255, 0.08);
 }
 
 .specsTitle {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 20px;
+  color: var(--primary-blue);
+  margin-bottom: 24px;
   line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.specsTitle::before {
+  content: "⚙️";
+  font-size: 1.3rem;
 }
 
 .specsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 16px;
 }
 
 .specItem {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(4, 0, 255, 0.1);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
   align-items: center;
+  padding: 16px 20px;
+  background: rgba(4, 0, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(4, 0, 255, 0.08);
+  transition: var(--transition);
+  min-height: 80px;
+}
+
+.specItem:hover {
+  background: rgba(4, 0, 255, 0.05);
+  border-color: rgba(4, 0, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(4, 0, 255, 0.1);
+}
+
+.specIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-blue), #0000cc);
+  border-radius: 10px;
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.specContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 40px;
 }
 
 .specLabel {
   font-weight: 600;
   color: var(--text-dark);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  display: block;
+  line-height: 1.3;
 }
 
 .specValue {
-  color: var(--text-light);
-  font-size: 0.95rem;
+  color: var(--primary-blue);
+  font-size: 1rem;
+  font-weight: 700;
+  display: block;
+  line-height: 1.3;
 }
 
+/* CTA Buttons */
 .ctaButtons {
   display: flex;
   gap: 20px;
@@ -438,7 +495,7 @@ nav ul li a.active {
 }
 
 .btn {
-  padding: 15px 30px;
+  padding: 14px 28px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
@@ -450,39 +507,37 @@ nav ul li a.active {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-width: 180px;
+  min-width: 160px;
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, var(--primary-blue), #0000cc);
+  background: var(--primary-blue);
   color: var(--white);
-  box-shadow: 0 8px 25px rgba(4, 0, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(4, 0, 255, 0.2);
 }
 
 .btnPrimary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(4, 0, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(4, 0, 255, 0.3);
 }
 
 .btnSecondary {
   background: var(--white);
   color: var(--primary-blue);
   border: 2px solid var(--primary-blue);
-  box-shadow: 0 4px 15px rgba(4, 0, 255, 0.1);
 }
 
 .btnSecondary:hover {
   background: var(--primary-blue);
   color: var(--white);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(4, 0, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Related Products */
+/* Related Products - CLEANED UP */
 .relatedProducts {
   margin-top: 80px;
   padding: 60px 0;
-  background: linear-gradient(135deg, rgba(4, 0, 255, 0.02), rgba(255, 255, 255, 0.1));
+  background: rgba(4, 0, 255, 0.02);
 }
 
 .sectionTitle {
@@ -491,15 +546,15 @@ nav ul li a.active {
 }
 
 .sectionTitle h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.2rem;
+  font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 15px;
   line-height: 1.2;
 }
 
 .sectionTitle p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-light);
   line-height: 1.5;
 }
@@ -512,7 +567,7 @@ nav ul li a.active {
 
 .productCard {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--card-shadow);
   transition: var(--transition);
@@ -520,7 +575,7 @@ nav ul li a.active {
 }
 
 .productCard:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: var(--card-shadow-hover);
 }
 
@@ -532,11 +587,11 @@ nav ul li a.active {
 }
 
 .productCardContent {
-  padding: 25px;
+  padding: 20px;
 }
 
 .productCardTitle {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 10px;
@@ -559,9 +614,8 @@ nav ul li a.active {
   gap: 8px;
   transition: var(--transition);
   font-size: 0.95rem;
-  background: none;
   border: none;
-  cursor: pointer;
+  background: none;
   padding: 0;
 }
 
@@ -576,10 +630,7 @@ nav ul li a.active {
   color: var(--text-dark);
   padding: 2rem;
   margin-top: 4rem;
-  position: relative;
-  z-index: 12;
   border-top: 2px solid var(--primary-blue);
-  opacity: 1;
 }
 
 /* Mobile Menu */
@@ -659,7 +710,6 @@ nav ul li a.active {
     background-color: var(--primary-blue);
   }
 
-  /* Mobile dropdown styles */
   .dropdownContent {
     position: static;
     display: none;
@@ -701,10 +751,29 @@ nav ul li a.active {
 
   .specsGrid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
-
+  
+  .specItem {
+    padding: 14px 16px;
+    min-height: 70px;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+  }
+  
+  .specIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  
   .ctaButtons {
     flex-direction: column;
+    gap: 15px;
+  }
+  
+  .btn {
+    min-width: 100%;
   }
 
   .productsGrid {
@@ -729,9 +798,28 @@ nav ul li a.active {
     font-size: 1.8rem;
   }
 
-  .btn {
-    padding: 12px 25px;
+  .productSpecs {
+    padding: 20px;
+  }
+  
+  .specItem {
+    padding: 12px 14px;
+    min-height: 65px;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+  }
+  
+  .specIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+  
+  .specLabel {
+    font-size: 0.85rem;
+  }
+  
+  .specValue {
     font-size: 0.9rem;
-    min-width: 160px;
   }
 }

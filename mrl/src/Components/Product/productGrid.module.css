@@ -18,8 +18,8 @@
   opacity: 1;
   gap: 0;
   max-width: 1200px;
-  margin-top: -20px !important;
-  padding: 1rem 0 2rem !important;
+  margin-top: -10px !important;
+  padding: 0.5rem 0 1rem !important;
 }
 
 /* Product Cards - FIXED POSITIONING */
@@ -34,11 +34,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 200px;
+  min-height: 180px;
   transform-style: preserve-3d;
   perspective: 1000px;
-  margin-bottom: 3rem;
-  padding: 2rem;
+  margin-bottom: 2rem !important;
+  padding: 1.5rem;
   border-left: 4px solid var(--primary);
 }
 
@@ -94,12 +94,12 @@
 /* Product Image - FIXED POSITIONING AND STYLING */
 .productImage {
   flex: 0 0 300px;
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--white);
-  min-height: 200px;
+  min-height: 180px;
   position: relative;
   overflow: hidden;
   perspective: 1000px;
