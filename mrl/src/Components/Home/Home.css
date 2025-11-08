@@ -1,6 +1,6 @@
 :root {
   --primary: #0400ff;
-  --primary-dark: #0300cc;
+  --primary-dark: #302dd4;
   --primary-light: #4d4aff;
   --secondary: #ffffff;
   --light-bg: #f8f9ff;
@@ -144,9 +144,9 @@ p {
 }
 
 /* Ensure footer is always visible */
-footer {
+/* footer {
   overflow: visible !important;
-}
+} */
 
 /* Updated Header & Navigation */
 header {
@@ -2096,8 +2096,35 @@ header.scrolled .mobile-menu {
     opacity: 1;
     transform: none;
   }
+} 
+/* Add to Home.css */
+footer.footer {
+  display: block !important;
+  position: relative !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+    width: 100% !important;
+  z-index: 12 !important;
 }
 
+/* Ensure no other sections are overlapping the footer */
+.projects.section {
+  position: relative;
+  z-index: 1;
+}
+
+footer {
+   all: initial;
+  font-family: inherit;
+  display: block !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 12 !important;
+}
+footer {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
 @media (max-width: 768px) {
   .stats-grid,
   .services-grid,
@@ -2105,10 +2132,10 @@ header.scrolled .mobile-menu {
     grid-template-columns: 1fr;
   }
 
-  .footer-container {
+  /* .footer-container {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
+  } */
 
   h1 {
     font-size: 2.5rem;

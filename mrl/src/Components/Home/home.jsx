@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import Footer from "../Footer/footer"
 import './Home.css';
 
 const Home = () => {
@@ -14,7 +15,6 @@ const Home = () => {
   const aboutLeftRef = useRef(null);
   const aboutRightRef = useRef(null);
   const mvvRefs = useRef([]);
-
   const totalSlides = 4;
 
   // Stats data
@@ -165,8 +165,12 @@ const Home = () => {
             <h1>Innovating Vertical Mobility</h1>
             <p>Reliable Elevator Engineering Solutions for Modern Buildings.</p>
             <div className="hero-btns">
-              <a href="#about" className="btn btn-primary">Discover More</a>
-              <Link to="/products" className="btn btn-outline">Our Projects</Link>
+              <a href="#about" className="btn btn-primary">
+                Discover More
+              </a>
+              <Link to="/products" className="btn btn-outline">
+                Our Projects
+              </Link>
             </div>
           </div>
         </div>
@@ -179,47 +183,50 @@ const Home = () => {
             <div className="section-label">About Us</div>
             <h1>Engineering Vertical Innovation</h1>
             <p>
-              Pioneering elevator solutions that redefine modern architecture and
-              urban mobility
+              Pioneering elevator solutions that redefine modern architecture
+              and urban mobility
             </p>
           </div>
 
           <div className="about-grid">
-            <div 
+            <div
               ref={aboutLeftRef}
-              className={`about-content animate-slide-left ${visibleElements.aboutLeft ? 'visible' : ''}`}
+              className={`about-content animate-slide-left ${
+                visibleElements.aboutLeft ? "visible" : ""
+              }`}
             >
               <div className="floating-card">
                 <h2>MRL Engineering Excellence</h2>
                 <p>
-                  For over two decades, MRL Engineering has been at the forefront
-                  of vertical transportation innovation, delivering cutting-edge
-                  elevator solutions for the world's most ambitious architectural
-                  projects.
+                  For over two decades, MRL Engineering has been at the
+                  forefront of vertical transportation innovation, delivering
+                  cutting-edge elevator solutions for the world's most ambitious
+                  architectural projects.
                 </p>
 
                 <p>
                   Our team of certified engineers combines technical expertise
-                  with creative problem-solving to overcome the unique challenges
-                  of modern high-rise construction and urban development.
+                  with creative problem-solving to overcome the unique
+                  challenges of modern high-rise construction and urban
+                  development.
                 </p>
 
                 <ul className="features-list">
                   <li>
-                    <i className="fas fa-check-circle"></i> Advanced elevator system
-                    design
+                    <i className="fas fa-check-circle"></i> Advanced elevator
+                    system design
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Precision installation
-                    services
+                    <i className="fas fa-check-circle"></i> Precision
+                    installation services
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Predictive maintenance
-                    technology
+                    <i className="fas fa-check-circle"></i> Predictive
+                    maintenance technology
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Sustainable engineering
-                    solutions
+                    <i className="fas fa-check-circle"></i> Sustainable
+                    engineering solutions
                   </li>
                 </ul>
 
@@ -233,18 +240,23 @@ const Home = () => {
               </div>
             </div>
 
-            <div 
+            <div
               ref={aboutRightRef}
-              className={`about-visual animate-slide-right ${visibleElements.aboutRight ? 'visible' : ''}`}
+              className={`about-visual animate-slide-right ${
+                visibleElements.aboutRight ? "visible" : ""
+              }`}
             >
-              <div 
+              <div
                 className="image-carousel"
                 ref={carouselRef}
                 onMouseEnter={handleCarouselMouseEnter}
                 onMouseLeave={handleCarouselMouseLeave}
               >
                 <div className="carousel-container">
-                  <div className="carousel-track" style={{ transform: `translateX(-${currentSlide * 25}%)` }}>
+                  <div
+                    className="carousel-track"
+                    style={{ transform: `translateX(-${currentSlide * 25}%)` }}
+                  >
                     <div className="carousel-slide">
                       <img
                         src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
@@ -299,7 +311,9 @@ const Home = () => {
                     {[0, 1, 2, 3].map((index) => (
                       <span
                         key={index}
-                        className={`indicator ${currentSlide === index ? 'active' : ''}`}
+                        className={`indicator ${
+                          currentSlide === index ? "active" : ""
+                        }`}
                         onClick={() => setCurrentSlide(index)}
                       ></span>
                     ))}
@@ -313,14 +327,30 @@ const Home = () => {
           <div className="mission-vision-values">
             <div className="mvv-grid">
               {[
-                { icon: 'fas fa-bullseye', title: 'Our Mission', text: 'To revolutionize vertical transportation through innovative engineering solutions that enhance urban mobility and architectural possibilities.' },
-                { icon: 'fas fa-eye', title: 'Our Vision', text: 'To be the global leader in elevator engineering, setting new standards for safety, efficiency, and sustainability in vertical transportation.' },
-                { icon: 'fas fa-heart', title: 'Our Values', text: 'Excellence, Innovation, Safety, and Sustainability drive everything we do, ensuring the highest quality solutions for our clients.' }
+                {
+                  icon: "fas fa-bullseye",
+                  title: "Our Mission",
+                  text: "To revolutionize vertical transportation through innovative engineering solutions that enhance urban mobility and architectural possibilities.",
+                },
+                {
+                  icon: "fas fa-eye",
+                  title: "Our Vision",
+                  text: "To be the global leader in elevator engineering, setting new standards for safety, efficiency, and sustainability in vertical transportation.",
+                },
+                {
+                  icon: "fas fa-heart",
+                  title: "Our Values",
+                  text: "Excellence, Innovation, Safety, and Sustainability drive everything we do, ensuring the highest quality solutions for our clients.",
+                },
               ].map((item, index) => (
-                <div 
+                <div
                   key={index}
-                  ref={el => { if (el) mvvRefs.current[index] = el; }}
-                  className={`mvv-card animate-scale ${visibleElements[`mvv${index}`] ? 'visible' : ''}`}
+                  ref={(el) => {
+                    if (el) mvvRefs.current[index] = el;
+                  }}
+                  className={`mvv-card animate-scale ${
+                    visibleElements[`mvv${index}`] ? "visible" : ""
+                  }`}
                 >
                   <div className="mvv-icon">
                     <i className={item.icon}></i>
@@ -339,27 +369,34 @@ const Home = () => {
         <div className="container">
           <div className="section-title">
             <h2>Our Impact</h2>
-            <p>Numbers that tell the story of our commitment to excellence and innovation in vertical transportation engineering.</p>
+            <p>
+              Numbers that tell the story of our commitment to excellence and
+              innovation in vertical transportation engineering.
+            </p>
           </div>
           <div className="stats-grid">
             {statsData.map((stat, index) => (
-              <div 
-                key={index} 
-                className="stat-item fade-in" 
-                ref={el => {
+              <div
+                key={index}
+                className="stat-item fade-in"
+                ref={(el) => {
                   if (el) statItemRefs.current[index] = el;
                 }}
               >
-                <div className="stat-circle" style={{ '--percentage': `${statPercentages[index] || 0}%` }}>
+                <div
+                  className="stat-circle"
+                  style={{ "--percentage": `${statPercentages[index] || 0}%` }}
+                >
                   <div className="stat-content">
                     <div className="stat-number">
-                      {statValues[index] || 0}{stat.suffix}
+                      {statValues[index] || 0}
+                      {stat.suffix}
                     </div>
                     <div className="stat-label">
-                      {index === 0 && 'Employees'}
-                      {index === 1 && 'Projects'}
-                      {index === 2 && 'Satisfaction'}
-                      {index === 3 && 'Years'}
+                      {index === 0 && "Employees"}
+                      {index === 1 && "Projects"}
+                      {index === 2 && "Satisfaction"}
+                      {index === 3 && "Years"}
                     </div>
                   </div>
                 </div>
@@ -382,8 +419,8 @@ const Home = () => {
               </div>
               <h3>Installation</h3>
               <p>
-                Professional installation of new elevator systems with the latest
-                technology and safety standards.
+                Professional installation of new elevator systems with the
+                latest technology and safety standards.
               </p>
             </div>
             <div className="service-card">
@@ -402,8 +439,8 @@ const Home = () => {
               </div>
               <h3>Modernization</h3>
               <p>
-                Upgrade your existing elevator systems with modern technology for
-                improved efficiency and safety.
+                Upgrade your existing elevator systems with modern technology
+                for improved efficiency and safety.
               </p>
             </div>
           </div>
@@ -423,8 +460,8 @@ const Home = () => {
             <div className="section-label">Our Partners</div>
             <h2>Trusted by Industry Leaders</h2>
             <p>
-              We collaborate with the world's most innovative companies to deliver
-              exceptional engineering solutions
+              We collaborate with the world's most innovative companies to
+              deliver exceptional engineering solutions
             </p>
           </div>
 
@@ -442,13 +479,17 @@ const Home = () => {
                   <div className="benefit-icon">
                     <i className="fas fa-shield-alt"></i>
                   </div>
-                  <div className="benefit-text">Trusted by industry leaders</div>
+                  <div className="benefit-text">
+                    Trusted by industry leaders
+                  </div>
                 </div>
                 <div className="benefit-item">
                   <div className="benefit-icon">
                     <i className="fas fa-lightbulb"></i>
                   </div>
-                  <div className="benefit-text">Innovative engineering solutions</div>
+                  <div className="benefit-text">
+                    Innovative engineering solutions
+                  </div>
                 </div>
                 <div className="benefit-item">
                   <div className="benefit-icon">
@@ -464,7 +505,9 @@ const Home = () => {
                 </div>
               </div>
 
-              <Link to="/inquiry#partnership" className="btn btn-primary">Become a Partner</Link>
+              <Link to="/inquiry#partnership" className="btn btn-primary">
+                Become a Partner
+              </Link>
             </div>
 
             <div className="partners-visual">
@@ -521,18 +564,78 @@ const Home = () => {
 
                   <svg className="connection-lines" viewBox="0 0 400 400">
                     <defs>
-                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: 'var(--primary)', stopOpacity: '0.3' }} />
-                        <stop offset="50%" style={{ stopColor: 'var(--primary)', stopOpacity: '0.8' }} />
-                        <stop offset="100%" style={{ stopColor: 'var(--primary-light)', stopOpacity: '0.3' }} />
+                      <linearGradient
+                        id="lineGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop
+                          offset="0%"
+                          style={{
+                            stopColor: "var(--primary)",
+                            stopOpacity: "0.3",
+                          }}
+                        />
+                        <stop
+                          offset="50%"
+                          style={{
+                            stopColor: "var(--primary)",
+                            stopOpacity: "0.8",
+                          }}
+                        />
+                        <stop
+                          offset="100%"
+                          style={{
+                            stopColor: "var(--primary-light)",
+                            stopOpacity: "0.3",
+                          }}
+                        />
                       </linearGradient>
                     </defs>
-                    <line x1="200" y1="200" x2="120" y2="100" className="connection-line line-1" />
-                    <line x1="200" y1="200" x2="280" y2="100" className="connection-line line-2" />
-                    <line x1="200" y1="200" x2="120" y2="300" className="connection-line line-3" />
-                    <line x1="200" y1="200" x2="280" y2="300" className="connection-line line-4" />
-                    <line x1="200" y1="200" x2="80" y2="200" className="connection-line line-5" />
-                    <line x1="200" y1="200" x2="320" y2="200" className="connection-line line-6" />
+                    <line
+                      x1="200"
+                      y1="200"
+                      x2="120"
+                      y2="100"
+                      className="connection-line line-1"
+                    />
+                    <line
+                      x1="200"
+                      y1="200"
+                      x2="280"
+                      y2="100"
+                      className="connection-line line-2"
+                    />
+                    <line
+                      x1="200"
+                      y1="200"
+                      x2="120"
+                      y2="300"
+                      className="connection-line line-3"
+                    />
+                    <line
+                      x1="200"
+                      y1="200"
+                      x2="280"
+                      y2="300"
+                      className="connection-line line-4"
+                    />
+                    <line
+                      x1="200"
+                      y1="200"
+                      x2="80"
+                      y2="200"
+                      className="connection-line line-5"
+                    />
+                    <line
+                      x1="200"
+                      y1="200"
+                      x2="320"
+                      y2="200"
+                      className="connection-line line-6"
+                    />
                   </svg>
 
                   <div className="particle particle-1"></div>
@@ -611,7 +714,8 @@ const Home = () => {
               <div
                 className="project-image"
                 style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)'
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
                 }}
               ></div>
               <div className="project-overlay">
@@ -625,7 +729,8 @@ const Home = () => {
               <div
                 className="project-image"
                 style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)'
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
                 }}
               ></div>
               <div className="project-overlay">
@@ -639,7 +744,8 @@ const Home = () => {
               <div
                 className="project-image"
                 style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)'
+                  backgroundImage:
+                    "url(https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)",
                 }}
               ></div>
               <div className="project-overlay">
@@ -650,57 +756,16 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <Link to="/products" className="btn btn-primary">View All Projects</Link>
+          <Link to="/products" className="btn btn-primary">
+            View All Projects
+          </Link>
         </div>
+         
+  
       </section>
 
       {/* Footer */}
-      <footer>
-        <div className="footer-wave">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
-          </svg>
-        </div>
-        <div className="container">
-          <div className="footer-container">
-            <div className="footer-col">
-              <h3>MRL Engineering</h3>
-              <p>Leading provider of innovative vertical transportation solutions with a commitment to safety, reliability, and excellence.</p>
-              <div className="social-links">
-                <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                <a href="#"><i className="fab fa-facebook-f"></i></a>
-                <a href="#"><i className="fab fa-instagram"></i></a>
-                <a href="#"><i className="fab fa-twitter"></i></a>
-              </div>
-            </div>
-            <div className="footer-col">
-              <h3>Contact Info</h3>
-              <p><i className="fas fa-map-marker-alt"></i> 123 Engineering Drive, Tech City</p>
-              <p><i className="fas fa-phone"></i> +1 (555) 123-4567</p>
-              <p><i className="fas fa-envelope"></i> info@mrlengineering.com</p>
-            </div>
-            <div className="footer-col">
-              <h3>Quick Links</h3>
-              <Link to="/">Home</Link>
-              <a href="#about">About Us</a>
-              <Link to="/service">Services</Link>
-              <Link to="/products">Projects</Link>
-              <Link to="/contact">Contact</Link>
-            </div>
-            <div className="footer-col">
-              <h3>Our Services</h3>
-              <Link to="/service">Elevator Installation</Link>
-              <Link to="/service">Elevator Maintenance</Link>
-              <Link to="/service">Modernization & Upgrades</Link>
-              <Link to="/service">Consulting & Support</Link>
-              <Link to="/service">Emergency Services</Link>
-            </div>
-          </div>
-          <div className="copyright">
-            <p>&copy; 2023 MRL Engineering. All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
+         <Footer />
     </>
   );
 };
