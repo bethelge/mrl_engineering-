@@ -164,14 +164,14 @@ const Home = () => {
           <div className="hero-content">
             <h1>Innovating Vertical Mobility</h1>
             <p>Reliable Elevator Engineering Solutions for Modern Buildings.</p>
-            <div className="hero-btns">
+            {/* <div className="hero-btns">
               <a href="#about" className="btn btn-primary">
                 Discover More
               </a>
               <Link to="/products" className="btn btn-outline">
                 Our Projects
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

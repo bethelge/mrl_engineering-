@@ -394,15 +394,21 @@ header.scrolled .mobile-menu {
 }
 
 .hero h1 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem !important;
+  
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.5s forwards;
 }
 
 .hero p {
   font-size: 1.3rem;
-  margin-bottom: 2.5rem;
-  opacity: 0.9;
+  margin-bottom: 4rem !important;
+  margin-left: 30px !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  max-width: 720px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.8s forwards;
 }

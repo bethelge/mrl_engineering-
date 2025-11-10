@@ -176,54 +176,7 @@ export const categories = [
   { id: "utilities", name: "Utilities" },
 ];
 
-// export const dropdownItems = [
-//   { icon: "fas fa-box", text: "Product Inquiry", href: "/inquiry#product" },
-//   {
-//     icon: "fas fa-calculator",
-//     text: "Price Quote",
-//     href: "/inquiry#quotation",
-//   },
-//   {
-//     icon: "fas fa-tools",
-//     text: "Maintenance Service",
-//     href: "/inquiry#maintenance",
-//   },
-//   {
-//     icon: "fas fa-cogs",
-//     text: "Installation Service",
-//     href: "/inquiry#installation",
-//   },
-//   {
-//     icon: "fas fa-headset",
-//     text: "Technical Support",
-//     href: "/inquiry#support",
-//   },
-//   {
-//     icon: "fas fa-wrench",
-//     text: "Spare Parts Inquiry",
-//     href: "/inquiry#parts",
-//   },
-//   {
-//     icon: "fas fa-shield-alt",
-//     text: "Warranty Service",
-//     href: "/inquiry#warranty",
-//   },
-//   {
-//     icon: "fas fa-handshake",
-//     text: "Partnership Inquiry",
-//     href: "/inquiry#partnership",
-//   },
-//   {
-//     icon: "fas fa-calendar-check",
-//     text: "Service Booking",
-//     href: "/inquiry#booking",
-//   },
-//   {
-//     icon: "fas fa-envelope",
-//     text: "General Inquiry",
-//     href: "/inquiry#general",
-//   },
-// ];
+
 export const dropdownItems = [
   { icon: "fas fa-box", text: "Product Inquiry", href: "/inquiry#product" },
   {
