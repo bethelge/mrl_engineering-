@@ -375,9 +375,9 @@ header.scrolled .mobile-menu {
   background: linear-gradient(
       135deg,
       rgba(4, 0, 255, 0.8) 0%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.144) 100%
     ),
-    url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+    url("../../assets/cover.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -394,12 +394,35 @@ header.scrolled .mobile-menu {
 }
 
 .hero h1 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: -8.5rem !important;
   
   color: #ffffff !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+.hero .motto {
+  margin-bottom: 2.5rem !important;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero .motto-line1 {
+  display: block;
+  font-weight: 900;
+}
+
+.hero .motto-line2 {
+  display: block;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--secondary) 0%, var(--primary-light) 60%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  letter-spacing: 2px;
 }
 
 .hero p {
@@ -1018,7 +1041,7 @@ header.scrolled .mobile-menu {
 
 /* Stats Section */
 .stats {
-  padding: 200px 0 150px;
+  padding: 200px 0 120px;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
   text-align: center;
   position: relative;
@@ -1036,6 +1059,20 @@ header.scrolled .mobile-menu {
     radial-gradient(circle at 20% 80%, rgba(4, 0, 255, 0.03) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(4, 0, 255, 0.05) 0%, transparent 50%);
   pointer-events: none;
+}
+
+.stats::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(
+    to bottom right,
+    transparent 49%,
+    var(--secondary) 50%
+  );
 }
 
 .stats-grid {
@@ -1171,7 +1208,7 @@ header.scrolled .mobile-menu {
 
 /* Services Section */
 .services {
-  padding: 200px 0 150px;
+  padding: 180px 0 150px;
   background-color: var(--secondary);
   position: relative;
 }
@@ -1179,10 +1216,10 @@ header.scrolled .mobile-menu {
 .services::before {
   content: "";
   position: absolute;
-  top: -150px;
+  top: -120px;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: 120px;
   background: linear-gradient(
     to top right,
     var(--light-bg) 49%,

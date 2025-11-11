@@ -1,14 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-import Footer from "../Footer/footer"
-import './Home.css';
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/footer";
+import "./Home.css";
+import testimony1 from "../../assets/testimony1.png";
+import testimony2 from "../../assets/testimony2.png";
+import testimony3 from "../../assets/testimony3.png";
+import testimony4 from "../../assets/testimony4.png";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [visibleElements, setVisibleElements] = useState({});
   const [statValues, setStatValues] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
-  const [statPercentages, setStatPercentages] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
+  const [statPercentages, setStatPercentages] = useState({
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+  });
   const autoPlayIntervalRef = useRef(null);
   const carouselRef = useRef(null);
   const statItemRefs = useRef([]);
@@ -19,10 +28,10 @@ const Home = () => {
 
   // Stats data
   const statsData = [
-    { value: 250, suffix: '+', percentage: 75 },
-    { value: 1500, suffix: '+', percentage: 85 },
-    { value: 98, suffix: '%', percentage: 98 },
-    { value: 25, suffix: '', percentage: 100 }
+    { value: 250, suffix: "+", percentage: 75 },
+    { value: 1500, suffix: "+", percentage: 85 },
+    { value: 98, suffix: "%", percentage: 98 },
+    { value: 25, suffix: "", percentage: 100 },
   ];
 
   // About section scroll animations
@@ -36,13 +45,16 @@ const Home = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           if (entry.target === aboutLeftRef.current) {
-            setVisibleElements(prev => ({ ...prev, aboutLeft: true }));
+            setVisibleElements((prev) => ({ ...prev, aboutLeft: true }));
           } else if (entry.target === aboutRightRef.current) {
-            setVisibleElements(prev => ({ ...prev, aboutRight: true }));
+            setVisibleElements((prev) => ({ ...prev, aboutRight: true }));
           } else {
             const index = mvvRefs.current.indexOf(entry.target);
             if (index !== -1) {
-              setVisibleElements(prev => ({ ...prev, [`mvv${index}`]: true }));
+              setVisibleElements((prev) => ({
+                ...prev,
+                [`mvv${index}`]: true,
+              }));
             }
           }
           observer.unobserve(entry.target);
@@ -52,7 +64,11 @@ const Home = () => {
 
     // Observe refs after they're initialized
     const timeoutId = setTimeout(() => {
-      const refsToObserve = [aboutLeftRef.current, aboutRightRef.current, ...mvvRefs.current].filter(Boolean);
+      const refsToObserve = [
+        aboutLeftRef.current,
+        aboutRightRef.current,
+        ...mvvRefs.current,
+      ].filter(Boolean);
       refsToObserve.forEach((ref) => {
         if (ref) observer.observe(ref);
       });
@@ -60,7 +76,11 @@ const Home = () => {
 
     return () => {
       clearTimeout(timeoutId);
-      const refsToObserve = [aboutLeftRef.current, aboutRightRef.current, ...mvvRefs.current].filter(Boolean);
+      const refsToObserve = [
+        aboutLeftRef.current,
+        aboutRightRef.current,
+        ...mvvRefs.current,
+      ].filter(Boolean);
       refsToObserve.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
@@ -85,17 +105,23 @@ const Home = () => {
             const statData = statsData[index];
             let current = 0;
             const increment = statData.value / 50;
-            
+
             // Animate percentage
             let percentageCurrent = 0;
             const percentageIncrement = statData.percentage / 50;
             const percentageTimer = setInterval(() => {
               percentageCurrent += percentageIncrement;
               if (percentageCurrent >= statData.percentage) {
-                setStatPercentages(prev => ({ ...prev, [index]: statData.percentage }));
+                setStatPercentages((prev) => ({
+                  ...prev,
+                  [index]: statData.percentage,
+                }));
                 clearInterval(percentageTimer);
               } else {
-                setStatPercentages(prev => ({ ...prev, [index]: percentageCurrent }));
+                setStatPercentages((prev) => ({
+                  ...prev,
+                  [index]: percentageCurrent,
+                }));
               }
             }, 30);
 
@@ -103,10 +129,13 @@ const Home = () => {
             const timer = setInterval(() => {
               current += increment;
               if (current >= statData.value) {
-                setStatValues(prev => ({ ...prev, [index]: statData.value }));
+                setStatValues((prev) => ({ ...prev, [index]: statData.value }));
                 clearInterval(timer);
               } else {
-                setStatValues(prev => ({ ...prev, [index]: Math.floor(current) }));
+                setStatValues((prev) => ({
+                  ...prev,
+                  [index]: Math.floor(current),
+                }));
               }
             }, 30);
           }
@@ -162,8 +191,11 @@ const Home = () => {
       <section className="hero">
         <div className="container">
           <div className="hero-content">
-            <h1>Innovating Vertical Mobility</h1>
-            <p>Reliable Elevator Engineering Solutions for Modern Buildings.</p>
+            <h1 className="motto">
+              <span className="motto-line1">WE DESIGN AND</span>
+              <span className="motto-line2">BUILD YOUR DREAM</span>
+            </h1>
+            {/* <p>Reliable Elevator Engineering Solutions for Modern Buildings.</p> */}
             {/* <div className="hero-btns">
               <a href="#about" className="btn btn-primary">
                 Discover More
@@ -198,42 +230,43 @@ const Home = () => {
               <div className="floating-card">
                 <h2>MRL Engineering Excellence</h2>
                 <p>
-                  For over two decades, MRL Engineering has been at the
-                  forefront of vertical transportation innovation, delivering
-                  cutting-edge elevator solutions for the world's most ambitious
-                  architectural projects.
+                  M.R.L Engineering and trading PLC is a trading company which
+                  is engaged on exporting different agricultural products and
+                  importing electromechanical machineries since 2017 G.C.
                 </p>
 
-                <p>
+                {/* <p>
                   Our team of certified engineers combines technical expertise
                   with creative problem-solving to overcome the unique
                   challenges of modern high-rise construction and urban
                   development.
-                </p>
+                </p> */}
 
                 <ul className="features-list">
                   <li>
-                    <i className="fas fa-check-circle"></i> Advanced elevator
-                    system design
+                    <i className="fas fa-check-circle"></i> German origin elevators & escalator
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Precision
-                    installation services
+                    <i className="fas fa-check-circle"></i>Grundfos Denmark origin water pumps
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Predictive
-                    maintenance technology
+                    <i className="fas fa-check-circle"></i> AOSIF Perkins engine (UK), Cummins engine (USA) generator
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Sustainable
-                    engineering solutions
+                    <i className="fas fa-check-circle"></i> FIREX Italy origin fire equipment’s
+                  </li>
+                  <li>
+                    <i className="fas fa-check-circle"></i> SODECA Spain origin ventilation system
+                  </li>
+                  <li>
+                    <i className="fas fa-check-circle"></i> Korvan Korean origin water tanker
                   </li>
                 </ul>
 
                 <div className="signature">
                   <div className="signature-avatar">JS</div>
                   <div className="signature-text">
-                    <div className="signature-name">John Smith</div>
+                    <div className="signature-name">Mr Mekuria Nigussie</div>
                     <div className="signature-role">CEO & Founder</div>
                   </div>
                 </div>
@@ -259,50 +292,50 @@ const Home = () => {
                   >
                     <div className="carousel-slide">
                       <img
-                        src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        src={testimony1}
                         alt="MRL Engineering - Innovation"
                         className="carousel-image"
                       />
                       <div className="image-overlay">
-                        <div className="image-caption">
+                        {/* <div className="image-caption">
                           Innovation in Motion - SkyPoint Tower Project
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="carousel-slide">
                       <img
-                        src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        src={testimony2}
                         alt="MRL Engineering - Technology"
                         className="carousel-image"
                       />
                       <div className="image-overlay">
-                        <div className="image-caption">
+                        {/* <div className="image-caption">
                           Advanced Technology - Metro Plaza Installation
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="carousel-slide">
                       <img
-                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        src={testimony3}
                         alt="MRL Engineering - Excellence"
                         className="carousel-image"
                       />
                       <div className="image-overlay">
-                        <div className="image-caption">
+                        {/* <div className="image-caption">
                           Engineering Excellence - Horizon Complex
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="carousel-slide">
                       <img
-                        src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                        src={testimony4}
                         alt="MRL Engineering - Precision"
                         className="carousel-image"
                       />
                       <div className="image-overlay">
-                        <div className="image-caption">
+                        {/* <div className="image-caption">
                           Precision Engineering - Skyline Tower
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -330,17 +363,18 @@ const Home = () => {
                 {
                   icon: "fas fa-bullseye",
                   title: "Our Mission",
-                  text: "To revolutionize vertical transportation through innovative engineering solutions that enhance urban mobility and architectural possibilities.",
+                  text: "To provide customized product and service solutions for national customer and international suppliers. To exceed customers expectaioons withinnovation technology, passion and proffessionolism. Provide our employees with a stage featuring dreams come true. To create a safe and healthier environment. To be on enterprise having a strong sense of social responsibility. ",
                 },
+
                 {
                   icon: "fas fa-eye",
                   title: "Our Vision",
-                  text: "To be the global leader in elevator engineering, setting new standards for safety, efficiency, and sustainability in vertical transportation.",
+                  text: "Our vision is tobring our customers i to the upto date innovations and technology in all Engineering and trading sectors for both products and service. MRL Enginnerring and Trading has a vision to build the most competitive Engineering and related proffesions in Ethiopia through incorporating qualified and experianced staff members with the required specification and skill in the filed to serve customers needs with the most efficent and effective precisions.",
                 },
                 {
                   icon: "fas fa-heart",
                   title: "Our Values",
-                  text: "Excellence, Innovation, Safety, and Sustainability drive everything we do, ensuring the highest quality solutions for our clients.",
+                  text: "Give prioprity to the quality and saftey of product and service. We keep on  technology innovation and managment improvment to enhance customer experiance. We stick to proffesional, diversified,open and efficient principles to build our team. We always bear in mind our commitments. We deliever uncompromising integrity, hard work and constant respect for each customers through which can develop trust, customer satisfaction and long lasting partnership so as to full fill out motto which says ",
                 },
               ].map((item, index) => (
                 <div
@@ -356,7 +390,15 @@ const Home = () => {
                     <i className={item.icon}></i>
                   </div>
                   <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <ul className="mvv-list">
+                    {item.text
+                      .split(".")
+                      .map((sentence) => sentence.trim())
+                      .filter((sentence) => sentence.length > 0)
+                      .map((sentence, idx) => (
+                        <li key={idx}>{sentence}</li>
+                      ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -760,12 +802,10 @@ const Home = () => {
             View All Projects
           </Link>
         </div>
-         
-  
       </section>
 
       {/* Footer */}
-         <Footer />
+      <Footer />
     </>
   );
 };
