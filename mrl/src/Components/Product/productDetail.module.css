@@ -173,7 +173,7 @@ nav ul li a.active {
   color: var(--white);
   box-shadow: 0 4px 10px rgba(4, 0, 255, 0.2);
   border-color: var(--primary-blue);
-}
+} 
 
 .header.scrolled .contactBtn:hover {
   background-color: var(--primary-blue);
