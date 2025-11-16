@@ -39,9 +39,7 @@ const Contact = () => {
   };
 
   const handleMapClick = () => {
-    alert(
-      "Map integration coming soon! For now, you can find us at:\n\n123 Engineering Plaza\nIndustrial District, NY 10001"
-    );
+    window.open("https://maps.app.goo.gl/zE9vFsvTZx5BLwWK9?g_st=atm", "_blank");
   };
 
   return (
@@ -86,7 +84,16 @@ const Contact = () => {
                     <div className={styles.methodContent}>
                       <h3>Call Us</h3>
                       <p>
-                        <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                        <a href="tel:+251118931028">+251-118931028</a> (Office)
+                      </p>
+                      <p>
+                        <a href="tel:+251922274440">+251-922-274440</a>
+                      </p>
+                      <p>
+                        <a href="tel:+251966424242">+251-966-424242</a>
+                      </p>
+                      <p>
+                        <a href="tel:+251967424242">+251-967-424242</a>
                       </p>
                       <p>Available 24/7 for emergencies</p>
                     </div>
@@ -99,9 +106,12 @@ const Contact = () => {
                     <div className={styles.methodContent}>
                       <h3>Email Us</h3>
                       <p>
-                        <a href="mailto:info@mrlengineering.com">
-                          info@mrlengineering.com
+                        <a href="mailto:mrlengineeringtrade@gmail.com">
+                          mrlengineeringtrade@gmail.com
                         </a>
+                      </p>
+                      <p>
+                        <a href="mailto:mekuemu@gmail.com">mekuemu@gmail.com</a>
                       </p>
                       <p>Response within 24 hours</p>
                     </div>
@@ -114,9 +124,11 @@ const Contact = () => {
                     <div className={styles.methodContent}>
                       <h3>Visit Us</h3>
                       <p>
-                        123 Engineering Plaza
+                        Bole Sub City, Woreda 04
                         <br />
-                        Industrial District, NY 10001
+                        House No. 210, Around Hayahulet
+                        <br />
+                        Addis Ababa, Ethiopia
                       </p>
                     </div>
                   </div>
@@ -263,12 +275,16 @@ const Contact = () => {
                 <div className={styles.mapInfo}>
                   <h3>Our Location</h3>
                   <p>
-                    123 Engineering Plaza, Industrial District
+                    Bole Sub City, Woreda 04
                     <br />
-                    New York, NY 10001
+                    House No. 210, Around Hayahulet
                     <br />
-                    United States
+                    Addis Ababa, Ethiopia
                   </p>
+                  <div className={styles.mapLink}>
+                    <span>Click to view on Google Maps</span>
+                    <i className="fas fa-external-link-alt"></i>
+                  </div>
                 </div>
               </div>
             </div>
