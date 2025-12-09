@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import styles from "./contact.module.css";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,9 @@ const Contact = () => {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -22,24 +26,96 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(
-      "Thank you for your message! We will get back to you within 24 hours."
-    );
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      company: "",
-      inquiryType: "",
-      message: "",
-    });
-  };
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-  const handleMapClick = () => {
-    window.open("https://maps.app.goo.gl/zE9vFsvTZx5BLwWK9?g_st=atm", "_blank");
+    // EmailJS configuration - Replace these with your actual EmailJS credentials
+    const serviceId =
+      import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+    const templateId =
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+    const publicKey =
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+
+    // Check if EmailJS is properly configured
+    if (
+      serviceId === "YOUR_SERVICE_ID" ||
+      templateId === "YOUR_TEMPLATE_ID" ||
+      publicKey === "YOUR_PUBLIC_KEY"
+    ) {
+      // Fallback to mailto if EmailJS is not configured
+      const subject = encodeURIComponent(
+        `Contact Form: ${formData.inquiryType || "General Inquiry"}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${formData.firstName} ${formData.lastName}\n` +
+          `Email: ${formData.email}\n` +
+          `Phone: ${formData.phone || "Not provided"}\n` +
+          `Company: ${formData.company || "Not provided"}\n` +
+          `Inquiry Type: ${formData.inquiryType}\n\n` +
+          `Message:\n${formData.message}`
+      );
+      window.location.href = `mailto:mrlengineeringtrade@gmail.com?subject=${subject}&body=${body}`;
+      setIsSubmitting(false);
+      setSubmitStatus("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        inquiryType: "",
+        message: "",
+      });
+      setTimeout(() => setSubmitStatus(null), 5000);
+      return;
+    }
+
+    const templateParams = {
+      from_name: `${formData.firstName} ${formData.lastName}`,
+      from_email: formData.email,
+      phone: formData.phone || "Not provided",
+      company: formData.company || "Not provided",
+      inquiry_type: formData.inquiryType,
+      message: formData.message,
+      to_email: "mrlengineeringtrade@gmail.com",
+    };
+
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      setSubmitStatus("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        inquiryType: "",
+        message: "",
+      });
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      // Fallback to mailto on error
+      const subject = encodeURIComponent(
+        `Contact Form: ${formData.inquiryType || "General Inquiry"}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${formData.firstName} ${formData.lastName}\n` +
+          `Email: ${formData.email}\n` +
+          `Phone: ${formData.phone || "Not provided"}\n` +
+          `Company: ${formData.company || "Not provided"}\n` +
+          `Inquiry Type: ${formData.inquiryType}\n\n` +
+          `Message:\n${formData.message}`
+      );
+      window.location.href = `mailto:mrlengineeringtrade@gmail.com?subject=${subject}&body=${body}`;
+      setSubmitStatus("success");
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -140,9 +216,9 @@ const Contact = () => {
                     <div className={styles.methodContent}>
                       <h3>Business Hours</h3>
                       <p>
-                        Monday - Friday: 8:00 AM - 6:00 PM
+                        Monday - Friday: 8:00 AM - 5:30 PM
                         <br />
-                        Saturday: 9:00 AM - 4:00 PM
+                        Saturday: 8:00 AM - 12:00 PM
                       </p>
                     </div>
                   </div>
@@ -254,10 +330,30 @@ const Contact = () => {
                     ></textarea>
                   </div>
 
-                  <button type="submit" className={styles.submitBtn}>
-                    Send Message
+                  <button
+                    type="submit"
+                    className={styles.submitBtn}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
                     <i className="fas fa-paper-plane"></i>
                   </button>
+
+                  {submitStatus === "success" && (
+                    <div className={styles.successMessage}>
+                      <i className="fas fa-check-circle"></i>
+                      Thank you! Your message has been sent successfully. We
+                      will get back to you within 24 hours.
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className={styles.errorMessage}>
+                      <i className="fas fa-exclamation-circle"></i>
+                      Sorry, there was an error sending your message. Please try
+                      again or contact us directly.
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -267,26 +363,13 @@ const Contact = () => {
         {/* Map Section */}
         <section className={styles.mapSection}>
           <div className={styles.container}>
-            <div className={styles.mapContainer}>
-              <div className={styles.mapPlaceholder} onClick={handleMapClick}>
-                <div className={styles.mapIcon}>
-                  <i className="fas fa-map-marker-alt"></i>
-                </div>
-                <div className={styles.mapInfo}>
-                  <h3>Our Location</h3>
-                  <p>
-                    Bole Sub City, Woreda 04
-                    <br />
-                    House No. 210, Around Hayahulet
-                    <br />
-                    Addis Ababa, Ethiopia
-                  </p>
-                  <div className={styles.mapLink}>
-                    <span>Click to view on Google Maps</span>
-                    <i className="fas fa-external-link-alt"></i>
-                  </div>
-                </div>
-              </div>
+            <div className={styles.contactMain}>
+              <iframe
+                title="Google Map"
+                src="https://maps.google.com/maps?q=Bole%20Sub-city%20Woreda%2003%20Bedria%20City%20Mall&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                className={styles.contactMap}
+                loading="lazy"
+              ></iframe>
             </div>
 
             <div className={styles.officeHours}>
@@ -294,11 +377,11 @@ const Contact = () => {
               <div className={styles.hoursGrid}>
                 <div className={styles.hoursCard}>
                   <h4>Monday - Friday</h4>
-                  <p>8:00 AM - 6:00 PM</p>
+                  <p>8:00 AM - 5:30 PM</p>
                 </div>
                 <div className={styles.hoursCard}>
                   <h4>Saturday</h4>
-                  <p>9:00 AM - 4:00 PM</p>
+                  <p>8:00 AM - 12:00 PM</p>
                 </div>
                 <div className={styles.hoursCard}>
                   <h4>Sunday</h4>

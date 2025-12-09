@@ -12,6 +12,7 @@ import ProductDetail from "./Components/Product/productDetail";
 import Service from "./Components/Service/service";
 import Inquiry from "./Components/Inquiry/inquiry";
 import Contact from "./Components/Contact/contact";
+import Testimonial from "./Components/Testimonial/testimonial";
 import "./App.css";
 
 // Redirect component for old URLs
@@ -38,6 +39,7 @@ function App() {
           <Route path="/service" element={<Service />} />
           <Route path="/inquiry" element={<Inquiry />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/testimonial" element={<Testimonial />} />
           {/* Add this route to handle old productDetail.html URLs */}
           <Route
             path="/productDetail.html"

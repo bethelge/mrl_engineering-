@@ -64,7 +64,7 @@ nav ul li a:hover {
 }
 
 nav ul li a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -156,22 +156,33 @@ nav ul li a:hover::after {
 .heroSection {
   padding: 80px 0;
   text-align: center;
-  background: linear-gradient(135deg, var(--light-gray) 0%, var(--secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--light-gray) 0%,
+    var(--secondary) 100%
+  );
   position: relative;
   overflow: hidden;
   margin-bottom: 60px !important; /* This creates the gap */
-  
 }
 
 .heroSection::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(4, 0, 255, 0.05) 0%, transparent 50%),
-              radial-gradient(circle at 80% 80%, rgba(4, 0, 255, 0.05) 0%, transparent 50%);
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(4, 0, 255, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(4, 0, 255, 0.05) 0%,
+      transparent 50%
+    );
   pointer-events: none;
 }
 
@@ -186,7 +197,11 @@ nav ul li a:hover::after {
   color: var(--primary);
   margin-bottom: 30px;
   margin-top: 60px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -311,13 +326,17 @@ nav ul li a:hover::after {
 }
 
 .contactForm::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
 }
 
 .formHeader {
@@ -386,7 +405,11 @@ nav ul li a:hover::after {
 .submitBtn {
   width: 100%;
   padding: 18px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
   color: var(--secondary);
   border: none;
   border-radius: 12px;
@@ -411,10 +434,68 @@ nav ul li a:hover::after {
   margin-left: 10px;
 }
 
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.successMessage,
+.errorMessage {
+  margin-top: 15px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+}
+
+.successMessage {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.errorMessage {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.successMessage i,
+.errorMessage i {
+  font-size: 16px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Map Section */
 .mapSection {
-  padding: 80px 0;
+  padding: 60px 0;
   background: var(--light-gray);
+}
+
+.contactMain {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.contactMap {
+  width: 100%;
+  height: 500px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }
 
 .mapContainer {
@@ -438,7 +519,7 @@ nav ul li a:hover::after {
 }
 
 .mapPlaceholder::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -576,6 +657,14 @@ nav ul li a:hover::after {
 
   .formRow {
     grid-template-columns: 1fr;
+  }
+
+  .contactMain {
+    margin-bottom: 30px;
+  }
+
+  .contactMap {
+    height: 400px;
   }
 
   .mapContainer {

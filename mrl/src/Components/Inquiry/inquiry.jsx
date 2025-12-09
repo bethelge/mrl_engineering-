@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar';
-import './inquiry.css';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import "./inquiry.css";
 
 const Inquiry = () => {
-
   // Smooth scroll to sections when coming from dropdown
   useEffect(() => {
     const hash = window.location.hash;
@@ -12,7 +11,7 @@ const Inquiry = () => {
       const timer = setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 100);
       return () => clearTimeout(timer);
@@ -23,29 +22,29 @@ const Inquiry = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
         }
       });
     }, observerOptions);
 
     // Observe inquiry cards
-    const inquiryCards = document.querySelectorAll('.inquiry-card');
-    inquiryCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    const inquiryCards = document.querySelectorAll(".inquiry-card");
+    inquiryCards.forEach((card) => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(30px)";
+      card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
       observer.observe(card);
     });
 
     return () => {
-      inquiryCards.forEach(card => {
+      inquiryCards.forEach((card) => {
         if (card) observer.unobserve(card);
       });
     };
@@ -54,9 +53,9 @@ const Inquiry = () => {
   // Footer animation
   useEffect(() => {
     const timer = setTimeout(() => {
-      const footer = document.querySelector('footer');
+      const footer = document.querySelector("footer");
       if (footer) {
-        footer.classList.add('show');
+        footer.classList.add("show");
       }
     }, 1000);
     return () => clearTimeout(timer);
@@ -73,7 +72,11 @@ const Inquiry = () => {
           <div className="container">
             <div className="hero-content">
               <h1>Inquiry Center</h1>
-              <p>Get in touch with our specialized teams for all your vertical transportation needs. We're here to help with expert guidance and support.</p>
+              <p>
+                Get in touch with our specialized teams for all your vertical
+                transportation needs. We're here to help with expert guidance
+                and support.
+              </p>
             </div>
           </div>
         </section>
@@ -90,21 +93,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Product Inquiries</h3>
                 </div>
-                <p className="card-description">Information about our elevator systems, specifications, features, and product capabilities.</p>
+                <p className="card-description">
+                  Information about our elevator systems, specifications,
+                  features, and product capabilities.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4567</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> sales@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    Saturday: 9:00 AM - 4:00 PM<br />
-                    Sunday: Closed</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      Saturday: 8:00 AM - 12:00 PM
+                      <br />
+                      Sunday: Closed
+                    </p>
                   </div>
                 </div>
               </div>
@@ -117,21 +132,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Maintenance Service</h3>
                 </div>
-                <p className="card-description">Schedule maintenance services and emergency repairs for your elevator systems.</p>
+                <p className="card-description">
+                  Schedule maintenance services and emergency repairs for your
+                  elevator systems.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4568</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> maintenance@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    24/7 Emergency Service Available<br />
-                    Emergency Hotline: +1 (555) 911-MRL</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      24/7 Emergency Service Available
+                      <br />
+                      {/* Emergency Hotline: +1 (555) 911-MRL */}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -144,21 +171,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Installation Service</h3>
                 </div>
-                <p className="card-description">Professional installation services for new elevator systems and modernization projects.</p>
+                <p className="card-description">
+                  Professional installation services for new elevator systems
+                  and modernization projects.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4574</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> installation@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    By appointment only<br />
-                    Site visits scheduled within 48 hours</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      By appointment only
+                      <br />
+                      Site visits scheduled within 48 hours
+                    </p>
                   </div>
                 </div>
               </div>
@@ -171,21 +210,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Quotation / Price Estimate</h3>
                 </div>
-                <p className="card-description">Request detailed quotes, pricing information, and project cost estimates for your elevator projects.</p>
+                <p className="card-description">
+                  Request detailed quotes, pricing information, and project cost
+                  estimates for your elevator projects.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4569</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> quotes@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    Quote Response: Within 24 hours<br />
-                    Complex Projects: 2-3 business days</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      Quote Response: Within 24 hours
+                      <br />
+                      Complex Projects: 2-3 business days
+                    </p>
                   </div>
                 </div>
               </div>
@@ -198,21 +249,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Technical Support</h3>
                 </div>
-                <p className="card-description">Technical assistance and troubleshooting for existing elevator systems.</p>
+                <p className="card-description">
+                  Technical assistance and troubleshooting for existing elevator
+                  systems.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4570</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> support@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>24/7 Technical Support Available<br />
-                    Priority Support: Monday - Friday 8AM-6PM<br />
-                    Remote diagnostics available</p>
+                    <p>
+                      24/7 Technical Support Available
+                      <br />
+                      Priority Support: Monday - Friday 8:00AM-5:30PM
+                      <br />
+                      Remote diagnostics available
+                    </p>
                   </div>
                 </div>
               </div>
@@ -225,21 +288,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Spare Parts Inquiry</h3>
                 </div>
-                <p className="card-description">Inquiries about spare parts availability, pricing, and ordering for elevator systems.</p>
+                <p className="card-description">
+                  Inquiries about spare parts availability, pricing, and
+                  ordering for elevator systems.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4575</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> parts@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    Saturday: 9:00 AM - 4:00 PM<br />
-                    Same-day shipping available</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      Saturday: 8:00 AM - 12:00 PM
+                      <br />
+                      Same-day shipping available
+                    </p>
                   </div>
                 </div>
               </div>
@@ -252,21 +327,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Partnership Inquiry</h3>
                 </div>
-                <p className="card-description">Explore partnership opportunities, joint ventures, and business collaboration with MRL Engineering.</p>
+                <p className="card-description">
+                  Explore partnership opportunities, joint ventures, and
+                  business collaboration with MRL Engineering.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4571</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> partnerships@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 9:00 AM - 5:00 PM<br />
-                    By appointment only<br />
-                    Response time: 2-3 business days</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      By appointment only
+                      <br />
+                      Response time: 2-3 business days
+                    </p>
                   </div>
                 </div>
               </div>
@@ -279,21 +366,33 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">Service Booking</h3>
                 </div>
-                <p className="card-description">Schedule maintenance appointments, inspections, and service calls for your elevator systems.</p>
+                <p className="card-description">
+                  Schedule maintenance appointments, inspections, and service
+                  calls for your elevator systems.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4576</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> booking@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    Saturday: 9:00 AM - 4:00 PM<br />
-                    Online booking available 24/7</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      Saturday: 8:00 AM - 12:00 PM
+                      <br />
+                      Online booking available 24/7
+                    </p>
                   </div>
                 </div>
               </div>
@@ -304,23 +403,37 @@ const Inquiry = () => {
                   <div className="card-icon">
                     <i className="fas fa-shield-alt"></i>
                   </div>
-                  <h3 className="card-title">After-Sales / Warranty Services</h3>
+                  <h3 className="card-title">
+                    After-Sales / Warranty Services
+                  </h3>
                 </div>
-                <p className="card-description">Warranty claims, after-sales support, and service agreements for your elevator systems.</p>
+                <p className="card-description">
+                  Warranty claims, after-sales support, and service agreements
+                  for your elevator systems.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4572</span>
+                    <span>
+                      <span className="label">Phone:</span> +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> warranty@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    Saturday: 9:00 AM - 4:00 PM<br />
-                    Warranty claims processed within 48 hours</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      Saturday: 8:00 AM - 12:00 PM
+                      <br />
+                      Warranty claims processed within 48 hours
+                    </p>
                   </div>
                 </div>
               </div>
@@ -333,21 +446,34 @@ const Inquiry = () => {
                   </div>
                   <h3 className="card-title">General Inquiry</h3>
                 </div>
-                <p className="card-description">General questions, company information, career opportunities, and any other inquiries not covered above.</p>
+                <p className="card-description">
+                  General questions, company information, career opportunities,
+                  and any other inquiries not covered above.
+                </p>
                 <div className="contact-details">
                   <div className="contact-item">
                     <i className="fas fa-phone"></i>
-                    <span><span className="label">Phone:</span> +1 (555) 123-4573</span>
+                    <span>
+                      <span className="label">Phone:</span>
+                      +251-966-424242
+                    </span>
                   </div>
                   <div className="contact-item">
                     <i className="fas fa-envelope"></i>
-                    <span><span className="label">Email:</span> info@mrlengineering.com</span>
+                    <span>
+                      <span className="label">Email:</span>{" "}
+                      mrlengineeringtrade@gmail.com
+                    </span>
                   </div>
                   <div className="working-hours">
                     <h4>Working Hours</h4>
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM<br />
-                    Saturday: 9:00 AM - 4:00 PM<br />
-                    Sunday: Closed</p>
+                    <p>
+                      Monday - Friday: 8:00 AM - 5:30 PM
+                      <br />
+                      Saturday: 8:00 AM - 12:00 PM
+                      <br />
+                      Sunday: Closed
+                    </p>
                   </div>
                 </div>
               </div>
@@ -360,13 +486,20 @@ const Inquiry = () => {
           <div className="container">
             <div className="cta-content">
               <h2>Need Immediate Assistance?</h2>
-              <p>For urgent matters or if you're unsure which department to contact, reach out to our main office and we'll direct you to the right team.</p>
+              <p>
+                For urgent matters or if you're unsure which department to
+                contact, reach out to our main office and we'll direct you to
+                the right team.
+              </p>
               <div className="cta-buttons">
-                <a href="tel:+15551234567" className="cta-btn">
+                {/* <a href="tel:+15551234567" className="cta-btn">
                   <i className="fas fa-phone"></i>
                   Call Now
-                </a>
-                <a href="mailto:info@mrlengineering.com" className="cta-btn secondary">
+                </a> */}
+                <a
+                  href="mailto:info@mrlengineering.com"
+                  className="cta-btn secondary"
+                >
                   <i className="fas fa-envelope"></i>
                   Send Email
                 </a>
@@ -383,4 +516,3 @@ const Inquiry = () => {
 };
 
 export default Inquiry;
-

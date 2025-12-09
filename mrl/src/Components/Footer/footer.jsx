@@ -13,10 +13,11 @@ const Footer = () => {
             <p>Innovating Vertical Mobility Solutions for Modern Buildings</p>
             <div className="footer-contact">
               <p>
-                <i className="fas fa-envelope"></i> info@mrlengineering.com
+                <i className="fas fa-envelope"></i>{" "}
+                mrlengineeringtrade@gmail.com
               </p>
               <p>
-                <i className="fas fa-phone"></i> +1 (555) 123-4567
+                <i className="fas fa-phone"></i> +251118931028
               </p>
               <p>
                 <i className="fas fa-map-marker-alt"></i> 123 Engineering Drive,
@@ -65,61 +66,6 @@ const Footer = () => {
                 <Link to="/service">Safety Compliance</Link>
               </li>
             </ul>
-          </div>
-
-          <div className="footer-section">
-            <h4>Connect With Us</h4>
-            <div className="social-links">
-              <a
-                href="https://linkedin.com/company/mrl-engineering"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a
-                href="https://twitter.com/mrlengineering"
-                aria-label="Twitter"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a
-                href="https://facebook.com/mrlengineering"
-                aria-label="Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-facebook"></i>
-              </a>
-              <a
-                href="https://instagram.com/mrlengineering"
-                aria-label="Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                href="https://youtube.com/mrlengineering"
-                aria-label="YouTube"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-youtube"></i>
-              </a>
-            </div>
-            <div className="newsletter">
-              <p>Subscribe to our newsletter</p>
-              <div className="newsletter-form">
-                <input type="email" placeholder="Enter your email" />
-                <button type="submit">
-                  <i className="fas fa-paper-plane"></i>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
 
