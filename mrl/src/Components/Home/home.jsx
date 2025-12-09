@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/footer";
 import "./Home.css";
-import testimony1 from "../../assets/testimony1.png";
-import testimony2 from "../../assets/testimony2.png";
-import testimony3 from "../../assets/testimony3.png";
-import testimony4 from "../../assets/testimony4.png";
-
+import blacklion from "../../assets/homepage/blacklion.png";
+import video1 from "../../assets/video1.mp4";
+import home1 from "../../assets/homepage/home1.jpg";
+import home2 from "../../assets/homepage/home2.jpg";
+import home3 from "../../assets/homepage/home3.jpg";
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [visibleElements, setVisibleElements] = useState({});
@@ -24,14 +24,15 @@ const Home = () => {
   const aboutLeftRef = useRef(null);
   const aboutRightRef = useRef(null);
   const mvvRefs = useRef([]);
+  const videoRef = useRef(null);
   const totalSlides = 4;
 
   // Stats data
   const statsData = [
-    { value: 250, suffix: "+", percentage: 75 },
-    { value: 1500, suffix: "+", percentage: 85 },
+    { value: 150, suffix: "+", percentage: 75 },
+    { value: 300, suffix: "+", percentage: 85 },
     { value: 98, suffix: "%", percentage: 98 },
-    { value: 25, suffix: "", percentage: 100 },
+    { value: 11, suffix: "", percentage: 100 },
   ];
 
   // About section scroll animations
@@ -159,29 +160,73 @@ const Home = () => {
     };
   }, []);
 
+  // Video autoplay and control - Always muted
   useEffect(() => {
-    autoPlayIntervalRef.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 3000);
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
 
-    return () => {
-      if (autoPlayIntervalRef.current) {
-        clearInterval(autoPlayIntervalRef.current);
+    // Ensure video is always muted
+    videoElement.muted = true;
+    videoElement.setAttribute("muted", "true");
+    videoElement.defaultMuted = true;
+
+    // Monitor for any unmute attempts and force mute
+    const handleVolumeChange = () => {
+      if (!videoElement.muted) {
+        videoElement.muted = true;
       }
     };
-  }, [totalSlides]);
 
-  const handleCarouselMouseEnter = () => {
-    if (autoPlayIntervalRef.current) {
-      clearInterval(autoPlayIntervalRef.current);
-    }
-  };
+    const handlePlay = () => {
+      videoElement.muted = true;
+    };
 
-  const handleCarouselMouseLeave = () => {
-    autoPlayIntervalRef.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 3000);
-  };
+    videoElement.addEventListener("volumechange", handleVolumeChange);
+    videoElement.addEventListener("play", handlePlay);
+
+    const handleVideoVisibility = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              videoElement.muted = true;
+              videoElement.play().catch((e) => {
+                console.log("Autoplay prevented:", e);
+              });
+            } else {
+              videoElement.pause();
+            }
+          });
+        },
+        {
+          threshold: 0.5,
+        }
+      );
+
+      observer.observe(videoElement);
+
+      return () => observer.unobserve(videoElement);
+    };
+
+    handleVideoVisibility();
+
+    // Set interval to ensure video stays muted
+    const muteInterval = setInterval(() => {
+      if (videoElement && !videoElement.muted) {
+        videoElement.muted = true;
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(muteInterval);
+      videoElement.removeEventListener("volumechange", handleVolumeChange);
+      videoElement.removeEventListener("play", handlePlay);
+      if (videoElement) {
+        videoElement.pause();
+        videoElement.currentTime = 0;
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -195,15 +240,6 @@ const Home = () => {
               <span className="motto-line1">WE DESIGN AND</span>
               <span className="motto-line2">BUILD YOUR DREAM</span>
             </h1>
-            {/* <p>Reliable Elevator Engineering Solutions for Modern Buildings.</p> */}
-            {/* <div className="hero-btns">
-              <a href="#about" className="btn btn-primary">
-                Discover More
-              </a>
-              <Link to="/products" className="btn btn-outline">
-                Our Projects
-              </Link>
-            </div> */}
           </div>
         </div>
       </section>
@@ -235,36 +271,35 @@ const Home = () => {
                   importing electromechanical machineries since 2017 G.C.
                 </p>
 
-                {/* <p>
-                  Our team of certified engineers combines technical expertise
-                  with creative problem-solving to overcome the unique
-                  challenges of modern high-rise construction and urban
-                  development.
-                </p> */}
-
                 <ul className="features-list">
                   <li>
-                    <i className="fas fa-check-circle"></i> German origin elevators & escalator
+                    <i className="fas fa-check-circle"></i> German origin
+                    elevators & escalator
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i>Grundfos Denmark origin water pumps
+                    <i className="fas fa-check-circle"></i>Grundfos Denmark
+                    origin water pumps
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> AOSIF Perkins engine (UK), Cummins engine (USA) generator
+                    <i className="fas fa-check-circle"></i> AOSIF Perkins engine
+                    (UK), Cummins engine (USA) generator
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> FIREX Italy origin fire equipment’s
+                    <i className="fas fa-check-circle"></i> FIREX Italy origin
+                    fire equipment's
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> SODECA Spain origin ventilation system
+                    <i className="fas fa-check-circle"></i> SODECA Spain origin
+                    ventilation system
                   </li>
                   <li>
-                    <i className="fas fa-check-circle"></i> Korvan Korean origin water tanker
+                    <i className="fas fa-check-circle"></i> Korvan Korean origin
+                    water tanker
                   </li>
                 </ul>
 
                 <div className="signature">
-                  <div className="signature-avatar">JS</div>
+                  <div className="signature-avatar">MN</div>
                   <div className="signature-text">
                     <div className="signature-name">Mr Mekuria Nigussie</div>
                     <div className="signature-role">CEO & Founder</div>
@@ -279,77 +314,28 @@ const Home = () => {
                 visibleElements.aboutRight ? "visible" : ""
               }`}
             >
-              <div
-                className="image-carousel"
-                ref={carouselRef}
-                onMouseEnter={handleCarouselMouseEnter}
-                onMouseLeave={handleCarouselMouseLeave}
-              >
-                <div className="carousel-container">
-                  <div
-                    className="carousel-track"
-                    style={{ transform: `translateX(-${currentSlide * 25}%)` }}
-                  >
-                    <div className="carousel-slide">
-                      <img
-                        src={testimony1}
-                        alt="MRL Engineering - Innovation"
-                        className="carousel-image"
-                      />
-                      <div className="image-overlay">
-                        {/* <div className="image-caption">
-                          Innovation in Motion - SkyPoint Tower Project
-                        </div> */}
-                      </div>
-                    </div>
-                    <div className="carousel-slide">
-                      <img
-                        src={testimony2}
-                        alt="MRL Engineering - Technology"
-                        className="carousel-image"
-                      />
-                      <div className="image-overlay">
-                        {/* <div className="image-caption">
-                          Advanced Technology - Metro Plaza Installation
-                        </div> */}
-                      </div>
-                    </div>
-                    <div className="carousel-slide">
-                      <img
-                        src={testimony3}
-                        alt="MRL Engineering - Excellence"
-                        className="carousel-image"
-                      />
-                      <div className="image-overlay">
-                        {/* <div className="image-caption">
-                          Engineering Excellence - Horizon Complex
-                        </div> */}
-                      </div>
-                    </div>
-                    <div className="carousel-slide">
-                      <img
-                        src={testimony4}
-                        alt="MRL Engineering - Precision"
-                        className="carousel-image"
-                      />
-                      <div className="image-overlay">
-                        {/* <div className="image-caption">
-                          Precision Engineering - Skyline Tower
-                        </div> */}
-                      </div>
-                    </div>
-                  </div>
+              <div className="video-container">
+                <video
+                  ref={videoRef}
+                  className="testimonial-video"
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster=""
+                  aria-label="MRL Engineering - Company Overview Video"
+                >
+                  <source src={video1} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
 
-                  <div className="carousel-indicators">
-                    {[0, 1, 2, 3].map((index) => (
-                      <span
-                        key={index}
-                        className={`indicator ${
-                          currentSlide === index ? "active" : ""
-                        }`}
-                        onClick={() => setCurrentSlide(index)}
-                      ></span>
-                    ))}
+                <div className="video-controls-overlay">
+                  {/* <div className="video-caption">
+                    MRL Engineering - Innovation in Motion
+                  </div> */}
+                  <div className="video-play-indicator">
+                    {/* <i className="fas fa-play-circle"></i> */}
+                    {/* <span>Click to play</span> */}
                   </div>
                 </div>
               </div>
@@ -363,18 +349,17 @@ const Home = () => {
                 {
                   icon: "fas fa-bullseye",
                   title: "Our Mission",
-                  text: "To provide customized product and service solutions for national customer and international suppliers. To exceed customers expectaioons withinnovation technology, passion and proffessionolism. Provide our employees with a stage featuring dreams come true. To create a safe and healthier environment. To be on enterprise having a strong sense of social responsibility. ",
+                  text: "To provide customized product and service solutions for national customer and international suppliers. To exceed customers expectations with innovation technology, passion and professionalism. Provide our employees with a stage featuring dreams come true. To create a safe and healthier environment. To be on enterprise having a strong sense of social responsibility.",
                 },
-
                 {
                   icon: "fas fa-eye",
                   title: "Our Vision",
-                  text: "Our vision is tobring our customers i to the upto date innovations and technology in all Engineering and trading sectors for both products and service. MRL Enginnerring and Trading has a vision to build the most competitive Engineering and related proffesions in Ethiopia through incorporating qualified and experianced staff members with the required specification and skill in the filed to serve customers needs with the most efficent and effective precisions.",
+                  text: "Our vision is to bring our customers into the up-to-date innovations and technology in all Engineering and trading sectors for both products and service. MRL Engineering and Trading has a vision to build the most competitive Engineering and related professions in Ethiopia through incorporating qualified and experienced staff members with the required specification and skill in the field to serve customers needs with the most efficient and effective precision.",
                 },
                 {
                   icon: "fas fa-heart",
                   title: "Our Values",
-                  text: "Give prioprity to the quality and saftey of product and service. We keep on  technology innovation and managment improvment to enhance customer experiance. We stick to proffesional, diversified,open and efficient principles to build our team. We always bear in mind our commitments. We deliever uncompromising integrity, hard work and constant respect for each customers through which can develop trust, customer satisfaction and long lasting partnership so as to full fill out motto which says ",
+                  text: "Give priority to the quality and safety of product and service. We keep on technology innovation and management improvement to enhance customer experience. We stick to professional, diversified, open and efficient principles to build our team. We always bear in mind our commitments. We deliver uncompromising integrity, hard work and constant respect for each customers through which can develop trust, customer satisfaction and long lasting partnership so as to fulfill our motto which says.",
                 },
               ].map((item, index) => (
                 <div
@@ -406,6 +391,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Rest of the component remains the same... */}
       {/* Stats Section */}
       <section className="stats section">
         <div className="container">
@@ -509,7 +495,7 @@ const Home = () => {
 
           <div className="partners-content">
             <div className="partners-text">
-              <h3>Partner With Excellence</h3>
+              <h3>Our Trusted customers</h3>
               <p>
                 Join forces with MRL Engineering for your next project and
                 experience the difference that expertise and innovation can make
@@ -547,7 +533,7 @@ const Home = () => {
                 </div>
               </div>
 
-              <Link to="/inquiry#partnership" className="btn btn-primary">
+              <Link to="/testimonial" className="btn btn-primary">
                 Become a Partner
               </Link>
             </div>
@@ -756,13 +742,12 @@ const Home = () => {
               <div
                 className="project-image"
                 style={{
-                  backgroundImage:
-                    "url(https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                  backgroundImage: `url(${home1})`,
                 }}
               ></div>
               <div className="project-overlay">
                 <div className="project-info">
-                  <h3>Skyline Tower</h3>
+                  {/* <h3>Skyline Tower</h3> */}
                   <p>Commercial high-rise installation</p>
                 </div>
               </div>
@@ -771,13 +756,12 @@ const Home = () => {
               <div
                 className="project-image"
                 style={{
-                  backgroundImage:
-                    "url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                  backgroundImage: `url(${home2})`,
                 }}
               ></div>
               <div className="project-overlay">
                 <div className="project-info">
-                  <h3>Metro Plaza</h3>
+                  {/* <h3>Metro Plaza</h3> */}
                   <p>Modernization project</p>
                 </div>
               </div>
@@ -786,20 +770,19 @@ const Home = () => {
               <div
                 className="project-image"
                 style={{
-                  backgroundImage:
-                    "url(https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)",
+                  backgroundImage: `url(${home3})`,
                 }}
               ></div>
               <div className="project-overlay">
                 <div className="project-info">
-                  <h3>Horizon Complex</h3>
+                  {/* <h3>Horizon Complex</h3> */}
                   <p>Residential elevator installation</p>
                 </div>
               </div>
             </div>
           </div>
           <Link to="/products" className="btn btn-primary">
-            View All Projects
+            View All Products
           </Link>
         </div>
       </section>

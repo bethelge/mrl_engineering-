@@ -2191,3 +2191,63 @@ footer {
   .section {
     padding: 100px 0;
   }      }
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  background: #000;
+}
+
+.testimonial-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-video:hover {
+  transform: scale(1.01);
+}
+
+.video-controls-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.video-caption {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.video-play-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.video-play-indicator i {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+/* Remove old carousel styles if not needed elsewhere */
+.image-carousel,
+.carousel-container,
+.carousel-track,
+.carousel-slide,
+.carousel-indicators {
+  display: none;
+}
